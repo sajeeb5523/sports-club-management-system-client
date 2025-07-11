@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -47,6 +48,7 @@ const Login = () => {
                     </fieldset>
                     <p className='mt-2'>Don’t have any account? <Link to='/register' className='btn btn-link text-blue-600'>Register</Link></p>
                 </form>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
 

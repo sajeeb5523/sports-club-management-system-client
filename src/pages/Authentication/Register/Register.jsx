@@ -1,13 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser } = useAuth();
 
     const onSubmit = data => {
         console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (
@@ -26,7 +35,7 @@ const Register = () => {
                         {
                             errors.email?.type === 'required' && <p className='text-red-500'>Name is required</p>
                         }
-                        
+
                         {/* email field */}
                         <label className="label">Email</label>
                         <input
@@ -63,6 +72,7 @@ const Register = () => {
                     </fieldset>
                     <p className='mt-2'>Already have an account? <Link to='/login' className='btn btn-link text-blue-600'>Login</Link></p>
                 </form>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
 
