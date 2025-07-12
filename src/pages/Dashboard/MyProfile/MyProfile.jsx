@@ -18,8 +18,6 @@ const MyProfile = () => {
         });
     };
 
-    // Get user display name only
-    
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">
@@ -28,13 +26,11 @@ const MyProfile = () => {
                     <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
                     <p className="mt-2 text-gray-600">Manage your account information and settings</p>
                 </div>
-
-                {/* Profile Card */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Profile Header */}
+                    {/* profile header */}
                     <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-8">
                         <div className="flex items-center space-x-6">
-                            {/* Profile Image */}
+                            {/* profile image */}
                             <div className="relative">
                                 <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
                                     {user?.photoURL ? (
@@ -47,10 +43,9 @@ const MyProfile = () => {
                                         <FaUser className="w-12 h-12 text-white/80" />
                                     )}
                                 </div>
-
                             </div>
 
-                            {/* User Info */}
+                            {/* user info */}
                             <div className="flex-1">
                                 <h2 className="text-2xl font-bold text-white">{user?.displayName}</h2>
                                 <div className="flex items-center mt-1">
@@ -70,16 +65,16 @@ const MyProfile = () => {
                         </div>
                     </div>
 
-                    {/* Profile Details */}
+                    {/* profile details */}
                     <div className="px-6 py-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Personal Information */}
+                            {/* personal information */}
                             <div className="space-y-6">
                                 <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
                                     Personal Information
                                 </h3>
 
-                                {/* Display Name */}
+                                {/* display name */}
                                 <div className="flex items-center space-x-3">
                                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                                         <FaUser className="w-5 h-5 text-blue-600" />
@@ -90,7 +85,7 @@ const MyProfile = () => {
                                     </div>
                                 </div>
 
-                                {/* Email */}
+                                {/* email */}
                                 <div className="flex items-center space-x-3">
                                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                                         <FaEnvelope className="w-5 h-5 text-green-600" />
@@ -106,7 +101,7 @@ const MyProfile = () => {
                                     </div>
                                 </div>
 
-                                {/* Registration Date */}
+                                {/* registration date */}
                                 <div className="flex items-center space-x-3">
                                     <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                                         <FaCalendarAlt className="w-5 h-5 text-purple-600" />
