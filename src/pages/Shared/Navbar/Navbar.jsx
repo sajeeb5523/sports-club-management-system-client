@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import { TbLogout } from "react-icons/tb";
@@ -8,6 +8,8 @@ import Logo from '../Logo/Logo';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
     const handleLogout = () => {
         console.log('user logout');
         logOut()
@@ -23,6 +25,22 @@ const Navbar = () => {
                 console.log(error);
             });
     }
+    // close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        if (isDropdownOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isDropdownOpen]);
     const navItems = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/courts'>Courts</NavLink></li>
@@ -55,14 +73,15 @@ const Navbar = () => {
             <div className='login_btn flex items-center gap-2 navbar-end'>
 
                 {user ? (
-                    <div className="relative group">
+                    <div className="relative" ref={dropdownRef}>
                         <img
                             src={user.photoURL || ''}
                             className='w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors'
                             alt="Profile"
+                            onClick={() => setIsDropdownOpen((prev) => !prev)}
                         />
-                        <div className="absolute right-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                            <div className="bg-base-100 shadow-lg rounded-lg w-64 border border-gray-200">
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 top-full mt-2 bg-base-100 shadow-lg rounded-lg w-64 border border-gray-200 z-50">
                                 <div className="p-4 border-b border-gray-100">
                                     <p className="font-semibold text-gray-800">{user.displayName || 'User'}</p>
                                     <p className="text-sm text-gray-600">{user.email}</p>
@@ -85,7 +104,7 @@ const Navbar = () => {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        )}
                     </div>
                 ) : (
                     <NavLink to='/login' className='btn sm:w-auto px-3 py-2 rounded-lg'>Login</NavLink>
