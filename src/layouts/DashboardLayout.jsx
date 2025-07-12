@@ -1,5 +1,8 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
+import { FaHome } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
+import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
     return (
@@ -37,8 +40,19 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    <Logo></Logo>
+                    <li className='mt-3'>
+                        <NavLink to='/dashboard'>
+                            <FaHome className="inline-block mr-2" />Home
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/my-profile'>
+                            <FaUser className="inline-block mr-2" />My Profile
+                        </NavLink>
+                    </li>
+
                 </ul>
             </div>
         </div>

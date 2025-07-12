@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useAuth();
-     const navigate = useNavigate();
+    const [profilePic, setProfilePic] = useState('');
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Register successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate(`${location.state ? location.state : '/'}`)
+
+                const userProfile = {
+                    displayName: data.name,
+                    photoUrl: profilePic
+                }
+                updateUserProfile(userProfile)
+                    .then(() => {
+                        console.log('profile name pic updated');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+
             })
             .catch(error => {
                 console.error(error);

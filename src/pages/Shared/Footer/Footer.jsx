@@ -2,11 +2,13 @@ import React from 'react';
 import { FaFacebook } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import Logo from '../Logo/Logo';
 
 const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10">
       <aside>
+        <Logo></Logo>
         <p className="font-bold">
           SPORTS CLUB MANAGEMENT SYSTEM
           <br />
