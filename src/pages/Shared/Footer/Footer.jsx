@@ -12,7 +12,7 @@ const Footer = () => {
         <p className="font-bold">
           SPORTS CLUB MANAGEMENT SYSTEM
           <br />
-          Providing reliable tech since 2024
+          Providing reliable tech since 2020
         </p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>

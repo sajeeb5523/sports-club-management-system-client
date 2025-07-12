@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Fix for default markers in react-leaflet
+// fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -15,15 +15,15 @@ L.Icon.Default.mergeOptions({
 const Location = () => {
     const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-    // Company location details
+    // company location details
     const locationData = {
         name: "SCMS Bangladesh",
         address: "House #456, Road #15, Sector #7",
         area: "Uttara, Dhaka-1230",
         city: "Dhaka",
         country: "Bangladesh",
-        phone: "+880 1234-567890",
-        email: "info@scms-bd.com",
+        phone: "+8801571-595523",
+        email: "sajeebaljabed1@gmail.com",
         website: "www.scms-bd.com",
         coordinates: {
             lat: 23.8709,
@@ -36,7 +36,7 @@ const Location = () => {
         }
     };
 
-    // Function to open Google Maps with directions
+    // function to open Google Maps with directions
     const openGoogleMaps = () => {
         const { lat, lng } = locationData.coordinates;
         const address = encodeURIComponent(`${locationData.address}, ${locationData.area}, ${locationData.city}, ${locationData.country}`);
@@ -44,7 +44,7 @@ const Location = () => {
         window.open(url, '_blank');
     };
 
-    // Function to copy address to clipboard
+    // function to copy address to clipboard
     const copyAddress = () => {
         const fullAddress = `${locationData.address}, ${locationData.area}, ${locationData.city}, ${locationData.country}`;
         navigator.clipboard.writeText(fullAddress).then(() => {
@@ -52,7 +52,7 @@ const Location = () => {
         });
     };
 
-    // Use default Google Maps style marker
+    // use default Google Maps style marker
     const customIcon = new L.Icon({
         iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
         iconSize: [32, 32],
@@ -67,7 +67,7 @@ const Location = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
             <div className="container mx-auto px-4">
-                {/* Header Section */}
+                {/* header section */}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">
                         Our Location
@@ -79,7 +79,7 @@ const Location = () => {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8 mb-12">
-                    {/* Address Details Card */}
+                    {/* address details card */}
                     <div className="bg-white rounded-2xl shadow-xl p-8">
                         <div className="flex items-center mb-6">
                             <div className="bg-blue-100 p-3 rounded-full mr-4">
@@ -89,14 +89,14 @@ const Location = () => {
                         </div>
 
                         <div className="space-y-6">
-                            {/* Company Name */}
+                            {/* company name */}
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
                                     {locationData.name}
                                 </h3>
                             </div>
 
-                            {/* Full Address */}
+                            {/* full address */}
                             <div className="bg-gray-50 p-4 rounded-lg">
                                 <p className="text-gray-700 leading-relaxed">
                                     <span className="font-medium">{locationData.address}</span><br />
@@ -111,7 +111,7 @@ const Location = () => {
                                 </button>
                             </div>
 
-                            {/* Contact Information */}
+                            {/* contact information */}
                             <div className="space-y-4">
                                 <div className="flex items-center">
                                     <FaPhone className="text-green-600 mr-3" />
@@ -133,7 +133,7 @@ const Location = () => {
                                 </div>
                             </div>
 
-                            {/* Working Hours */}
+                            {/* working hours */}
                             <div className="bg-blue-50 p-4 rounded-lg">
                                 <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
                                     <FaClock className="mr-2" />
@@ -155,7 +155,7 @@ const Location = () => {
                                 </div>
                             </div>
 
-                            {/* Navigation Button */}
+                            {/* navigation button */}
                             <button
                                 onClick={openGoogleMaps}
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center"
@@ -166,7 +166,7 @@ const Location = () => {
                         </div>
                     </div>
 
-                    {/* Map Section */}
+                    {/* map section */}
                     <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div className="p-6 border-b border-gray-200">
                             <div>
@@ -215,7 +215,7 @@ const Location = () => {
                                 </MapContainer>
                             )}
 
-                            {/* Loading overlay */}
+                            {/* loading overlay */}
                             {!isMapLoaded && (
                                 <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
                                     <div className="text-center">
@@ -228,14 +228,14 @@ const Location = () => {
                     </div>
                 </div>
 
-                {/* Additional Information */}
+                {/* additional information */}
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
                         Getting Here
                     </h2>
 
                     <div className="grid md:grid-cols-3 gap-6">
-                        {/* Public Transport */}
+                        {/* public transport */}
                         <div className="text-center p-6 bg-green-50 rounded-lg">
                             <div className="bg-green-100 p-3 rounded-full inline-block mb-4">
                                 <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@ const Location = () => {
                             </p>
                         </div>
 
-                        {/* Parking */}
+                        {/* parking */}
                         <div className="text-center p-6 bg-blue-50 rounded-lg">
                             <div className="bg-blue-100 p-3 rounded-full inline-block mb-4">
                                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -263,7 +263,7 @@ const Location = () => {
                             </p>
                         </div>
 
-                        {/* Accessibility */}
+                        {/* accessibility */}
                         <div className="text-center p-6 bg-purple-50 rounded-lg">
                             <div className="bg-purple-100 p-3 rounded-full inline-block mb-4">
                                 <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
