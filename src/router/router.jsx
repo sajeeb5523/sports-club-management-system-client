@@ -7,6 +7,8 @@ import Courts from "../pages/Courts/Courts";
 import PrivateRoute from '../routes/PrivateRoutes'
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import PendingBookings from "../pages/Dashboard/Pending Bookings/PendingBookings";
+import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBookings";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +40,14 @@ export const router = createBrowserRouter([
             {
                 path: 'my-profile',
                 Component: MyProfile,
+            },
+            {
+                path: 'pending-bookings',
+                Component: PendingBookings,
+            },
+            {
+                path: 'approved-bookings',
+                Component: ApprovedBookings,
             }
         ]
     },

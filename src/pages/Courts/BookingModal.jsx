@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const BookingModal = ({ court, onClose }) => {
     const [selectedSlots, setSelectedSlots] = useState([]);
     const [selectedDate, setSelectedDate] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
 
     // get today's date for min date attribute
     const today = new Date().toISOString().split('T')[0];
@@ -53,15 +55,18 @@ const BookingModal = ({ court, onClose }) => {
                 date: selectedDate,
                 slots: selectedSlots,
                 total: calculateTotalPrice(),
+                status: 'pending', // add booking status
+                email: user.email,
             };
             const res = await axiosSecure.post('/booking', bookingData);
             console.log('Booking response:', res.data);
+            console.log(bookingData);
             if (res.data.insertedId) {
                 Swal.fire({
-                    title: "Redirecting...",
-                    text: "Proceeding to admin approval.",
-                    icon: "success",
-                    timer: 1500,
+                    title: "Booking Pending",
+                    text: "Your booking request has been sent and is pending admin approval.",
+                    icon: "info",
+                    timer: 2000,
                     showConfirmButton: false,
                 });
                 onClose();
