@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const BookingModal = ({ court, onClose }) => {
     const [selectedSlots, setSelectedSlots] = useState([]);
     const [selectedDate, setSelectedDate] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
     // get today's date for min date attribute
     const today = new Date().toISOString().split('T')[0];
 
     const handleSlotToggle = (slot) => {
-        setSelectedSlots(prev => 
-            prev.includes(slot) 
+        setSelectedSlots(prev =>
+            prev.includes(slot)
                 ? prev.filter(s => s !== slot)
                 : [...prev, slot]
         );
@@ -22,7 +25,14 @@ const BookingModal = ({ court, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
+        console.log({
+            court: court.name,
+            date: selectedDate,
+            slots: selectedSlots,
+            total: calculateTotalPrice()
+        });
+
         if (selectedSlots.length === 0) {
             alert('Please select at least one time slot');
             return;
@@ -36,12 +46,32 @@ const BookingModal = ({ court, onClose }) => {
         setIsSubmitting(true);
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            alert(`Booking successful! You have booked ${selectedSlots.length} slot(s) for ${court.name} on ${selectedDate}. Total amount: ৳${calculateTotalPrice()}`);
-            onClose();
+            const bookingData = {
+                courtId: court._id,
+                courtName: court.name,
+                courtType: court.type,
+                date: selectedDate,
+                slots: selectedSlots,
+                total: calculateTotalPrice(),
+            };
+            const res = await axiosSecure.post('/booking', bookingData);
+            console.log('Booking response:', res.data);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    title: "Redirecting...",
+                    text: "Proceeding to admin approval.",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+                onClose();
+            } else {
+                alert('Booking failed. Please try again.');
+                console.error('Booking failed response:', res.data);
+            }
         } catch (error) {
             alert('Booking failed. Please try again.');
+            console.error('Booking error:', error);
         } finally {
             setIsSubmitting(false);
         }
@@ -76,7 +106,7 @@ const BookingModal = ({ court, onClose }) => {
 
                     <div className="mb-8">
                         <h3 className="text-gray-800 mb-4 text-lg font-semibold border-b-2 border-gray-200 pb-2">Booking Details</h3>
-                        
+
                         <div className="mb-6">
                             <label htmlFor="booking-date" className="block mb-2 font-semibold text-gray-800">Select Date:</label>
                             <input
@@ -132,16 +162,16 @@ const BookingModal = ({ court, onClose }) => {
                     </div>
 
                     <div className="flex gap-4 mt-8 pt-6 border-t-2 border-gray-100 sm:flex-row flex-col">
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             className="flex-1 py-3 bg-gray-600 text-white rounded-lg text-base font-semibold uppercase tracking-wide transition hover:bg-gray-700 disabled:opacity-60 disabled:cursor-not-allowed"
                             onClick={onClose}
                             disabled={isSubmitting}
                         >
                             Cancel
                         </button>
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             className="flex-1 py-3 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-lg text-base font-semibold uppercase tracking-wide transition hover:from-green-700 hover:to-green-600 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                             disabled={isSubmitting || selectedSlots.length === 0 || !selectedDate}
                         >
@@ -154,4 +184,4 @@ const BookingModal = ({ court, onClose }) => {
     );
 };
 
-export default BookingModal; 
+export default BookingModal;

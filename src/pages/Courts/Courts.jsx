@@ -126,7 +126,7 @@ const Courts = () => {
     };
 
     return (
-        <div className="max-w-[1200px] mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700">
+        <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700">
             <div className="text-center mb-12 text-white">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Available Courts</h1>
                 <p className="text-lg md:text-xl opacity-90">Book your favorite court and enjoy your game!</p>
