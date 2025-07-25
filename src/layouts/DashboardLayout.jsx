@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaUser, FaClock } from 'react-icons/fa';
+import { FaHome, FaUser, FaClock, FaCheckCircle } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
@@ -61,6 +61,12 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashboard/approved-bookings'>
                             <FaClock className="inline-block mr-2" />Approved Bookings
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/confirmed-bookings'>
+                            <FaCheckCircle className="inline-block mr-2" />Confirmed Bookings
                         </NavLink>
                     </li>
 

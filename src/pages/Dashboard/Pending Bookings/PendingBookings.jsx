@@ -36,9 +36,25 @@ const PendingBookings = () => {
         },
     });
 
+    // mutation for approving a booking
+    const approveMutation = useMutation({
+        mutationFn: async (id) => {
+            await axiosSecure.patch(`/booking/approve/${id}`, { status: 'confirmed' });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['pendingBookings', user?.email] });
+            queryClient.invalidateQueries({ queryKey: ['approvedBookings', user?.email] });
+        },
+    });
+
     const handleCancel = (id) => {
         if (!window.confirm('Are you sure you want to cancel this booking?')) return;
         cancelMutation.mutate(id);
+    };
+
+    const handleApprove = (id) => {
+        if (!window.confirm('Are you sure you want to approve this booking?')) return;
+        approveMutation.mutate(id);
     };
 
     if (isLoading) return <div>Loading</div>;
@@ -64,6 +80,13 @@ const PendingBookings = () => {
                             disabled={cancelMutation.isLoading}
                         >
                             {cancelMutation.isLoading ? 'Cancelling...' : 'Cancel'}
+                        </button>
+                        <button
+                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition disabled:opacity-50"
+                            onClick={() => handleApprove(booking._id)}
+                            disabled={approveMutation.isLoading}
+                        >
+                            {approveMutation.isLoading ? 'Approving...' : 'Approve'}
                         </button>
                     </div>
                 ))}

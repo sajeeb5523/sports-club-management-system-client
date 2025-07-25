@@ -9,6 +9,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../pages/Dashboard/Pending Bookings/PendingBookings";
 import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBookings";
+import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBookings";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: 'approved-bookings',
                 Component: ApprovedBookings,
+            },
+            {
+                path: 'confirmed-bookings',
+                Component: ConfirmedBookings,
             }
         ]
     },
