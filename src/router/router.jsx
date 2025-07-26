@@ -10,6 +10,7 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../pages/Dashboard/Pending Bookings/PendingBookings";
 import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBookings";
 import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBookings";
+import PaymentHistory from "../pages/Dashboard/Payment History/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
             {
                 path: 'confirmed-bookings',
                 Component: ConfirmedBookings,
+            },
+            {
+                path: 'payment-history',
+                Component: PaymentHistory,
             }
         ]
     },
