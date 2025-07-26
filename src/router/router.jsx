@@ -11,6 +11,7 @@ import PendingBookings from "../pages/Dashboard/Pending Bookings/PendingBookings
 import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBookings";
 import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBookings";
 import PaymentHistory from "../pages/Dashboard/Payment History/PaymentHistory";
+import MakeAnnouncement from "../pages/Dashboard/Make Announcement/MakeAnnouncement";
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +59,11 @@ export const router = createBrowserRouter([
             {
                 path: 'payment-history',
                 Component: PaymentHistory,
-            }
+            },
+            {
+                path: 'make-announcement',
+                Component: MakeAnnouncement,
+            },
         ]
     },
 ]);

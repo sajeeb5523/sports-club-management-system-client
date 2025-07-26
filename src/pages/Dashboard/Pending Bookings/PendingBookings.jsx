@@ -59,7 +59,13 @@ const PendingBookings = () => {
 
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error: {error?.message || 'Failed to load bookings.'}</div>;
-    if (!bookings.length) return <div>No pending bookings found.</div>;
+    if (!bookings.length) return (
+        <div className="flex items-center justify-center min-h-[100vh]">
+            <div className="text-center text-lg">
+                No pending bookings found.
+            </div>
+        </div>
+    );
 
     return (
         <div className="max-w-4xl mx-auto p-4">

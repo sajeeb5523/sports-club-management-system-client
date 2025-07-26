@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
-import Swal from 'sweetalert2';
 import StripeCheckout from './StripeCheckout';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -34,7 +33,7 @@ const ApprovedBookings = () => {
     // mutation for confirming payment
     const paymentMutation = useMutation({
         mutationFn: async (id) => {
-            // Simulate payment process (replace with real payment integration if needed)
+            // simulate payment process (replace with real payment integration if needed)
             await axiosSecure.patch(`/booking/approve/${id}`, { status: 'confirmed' });
         },
         onSuccess: () => {

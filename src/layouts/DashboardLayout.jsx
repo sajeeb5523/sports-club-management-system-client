@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaUser, FaClock, FaCheckCircle, FaMoneyBill } from 'react-icons/fa';
+import { FaHome, FaUser, FaClock, FaCheckCircle, FaMoneyBill, FaBullhorn } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
@@ -73,6 +73,12 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashboard/payment-history'>
                             <FaMoneyBill className="inline-block mr-2" />Payment History
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/make-announcement'>
+                            <FaBullhorn className="inline-block mr-2" />Make Announcement
                         </NavLink>
                     </li>
 
