@@ -100,6 +100,12 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
 
+                    <li>
+                        <NavLink to='/dashboard/manage-courts'>
+                            <FaUsers className="inline-block mr-2" />Manage Courts 
+                        </NavLink>
+                    </li>
+
                 </ul>
             </div>
         </div>

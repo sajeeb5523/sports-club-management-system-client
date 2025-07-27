@@ -16,6 +16,7 @@ import MakeAnnouncement from "../pages/Dashboard/Make Announcement/MakeAnnouncem
 import AdminProfile from "../pages/Dashboard/Admin Profile/AdminProfile";
 import ManageMembers from "../pages/Dashboard/Manage Members/ManageMembers";
 import AllUsers from "../pages/Dashboard/All Users/AllUsers";
+import ManageCourts from "../pages/Dashboard/Manage Courts/ManageCourts";
 
 export const router = createBrowserRouter([
     {
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-users',
                 Component: AllUsers,
+            },
+            {
+                path: 'manage-courts',
+                Component: ManageCourts,
             }
         ]
     },
