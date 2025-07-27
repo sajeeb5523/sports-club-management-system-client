@@ -17,6 +17,7 @@ import AdminProfile from "../pages/Dashboard/Admin Profile/AdminProfile";
 import ManageMembers from "../pages/Dashboard/Manage Members/ManageMembers";
 import AllUsers from "../pages/Dashboard/All Users/AllUsers";
 import ManageCourts from "../pages/Dashboard/Manage Courts/ManageCourts";
+import ManageCoupons from "../pages/Dashboard/Manage Coupons/ManageCoupons";
 
 export const router = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-courts',
                 Component: ManageCourts,
+            },
+            {
+                path:'manage-coupons',
+                Component: ManageCoupons,
             }
         ]
     },

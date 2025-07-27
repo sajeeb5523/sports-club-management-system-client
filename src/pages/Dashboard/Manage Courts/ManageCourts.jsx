@@ -122,7 +122,7 @@ const ManageCourts = () => {
         Squash: squash1Image
     };
 
-    // Handle form input changes
+    // handle form input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -131,7 +131,7 @@ const ManageCourts = () => {
         }));
     };
 
-    // Add new slot to form
+    // add new slot to form
     const addSlot = () => {
         if (newSlot.trim() && !formData.slots.includes(newSlot.trim())) {
             setFormData(prev => ({
@@ -142,7 +142,7 @@ const ManageCourts = () => {
         }
     };
 
-    // Remove slot from form
+    // remove slot from form
     const removeSlot = (slotToRemove) => {
         setFormData(prev => ({
             ...prev,
@@ -150,7 +150,7 @@ const ManageCourts = () => {
         }));
     };
 
-    // Open modal for adding new court
+    // open modal for adding new court
     const openAddModal = () => {
         setEditingCourt(null);
         setFormData({
@@ -162,7 +162,7 @@ const ManageCourts = () => {
         setShowModal(true);
     };
 
-    // Open modal for editing court
+    // open modal for editing court
     const openEditModal = (court) => {
         setEditingCourt(court);
         setFormData({
@@ -174,7 +174,7 @@ const ManageCourts = () => {
         setShowModal(true);
     };
 
-    // Close modal
+    // close modal
     const closeModal = () => {
         setShowModal(false);
         setEditingCourt(null);
@@ -187,7 +187,7 @@ const ManageCourts = () => {
         setNewSlot('');
     };
 
-    // Save court (add or update)
+    // save court (add or update)
     const saveCourt = () => {
         if (!formData.name || !formData.type || !formData.price || formData.slots.length === 0) {
             toast.error('Please fill all fields and add at least one slot');
@@ -203,7 +203,7 @@ const ManageCourts = () => {
         };
 
         if (editingCourt) {
-            // Update existing court
+            // update existing court
             setCourts(prev => prev.map(court => 
                 court.id === editingCourt.id 
                     ? { ...courtData, id: editingCourt.id }
@@ -211,7 +211,7 @@ const ManageCourts = () => {
             ));
             toast.success('Court updated successfully!');
         } else {
-            // Add new court
+            // add new court
             const newId = Math.max(...courts.map(c => c.id)) + 1;
             setCourts(prev => [...prev, { ...courtData, id: newId }]);
             toast.success('Court added successfully!');
@@ -220,7 +220,7 @@ const ManageCourts = () => {
         closeModal();
     };
 
-    // Delete court
+    // delete court
     const deleteCourt = (courtId) => {
         if (window.confirm('Are you sure you want to delete this court?')) {
             setCourts(prev => prev.filter(court => court.id !== courtId));
@@ -240,7 +240,7 @@ const ManageCourts = () => {
                 </button>
             </div>
 
-            {/* Courts Grid */}
+            {/* courts grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {courts.map((court) => (
                     <div key={court.id} className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -289,7 +289,7 @@ const ManageCourts = () => {
                 ))}
             </div>
 
-            {/* Modal */}
+            {/* modal */}
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
@@ -298,7 +298,7 @@ const ManageCourts = () => {
                         </h2>
 
                         <div className="space-y-4">
-                            {/* Court Name */}
+                            {/* court name */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Court Name
@@ -313,7 +313,7 @@ const ManageCourts = () => {
                                 />
                             </div>
 
-                            {/* Court Type */}
+                            {/* court type */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Court Type
@@ -331,7 +331,7 @@ const ManageCourts = () => {
                                 </select>
                             </div>
 
-                            {/* Price */}
+                            {/* price */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Price per Hour (৳)
@@ -346,7 +346,7 @@ const ManageCourts = () => {
                                 />
                             </div>
 
-                            {/* Slots */}
+                            {/* slots */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Available Slots
