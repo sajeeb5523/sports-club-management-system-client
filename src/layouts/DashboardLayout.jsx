@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn, FaUserShield, FaUsers, FaCrown, FaTicketAlt, FaGavel, FaThLarge } from 'react-icons/fa';
+import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn, FaUserShield, FaUsers, FaCrown, FaTicketAlt, FaGavel, FaThLarge, FaCalendarAlt } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
@@ -109,6 +109,12 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashboard/manage-coupons'>
                             <FaTicketAlt className="inline-block mr-2" />Manage Coupons
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/manage-bookings'>
+                            <FaCalendarAlt className="inline-block mr-2" />Manage Bookings
                         </NavLink>
                     </li>
 
