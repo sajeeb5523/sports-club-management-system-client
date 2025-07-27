@@ -24,7 +24,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
   const [couponLoading, setCouponLoading] = useState(false);
   const [couponError, setCouponError] = useState('');
 
-  // calculate final price after coupon discount
+  // Calculate original price and discounts
   const originalPrice = booking.total;
   const discountAmount = appliedCoupon ? (originalPrice * appliedCoupon.discount / 100) : 0;
   const finalPrice = originalPrice - discountAmount;
@@ -88,8 +88,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
       }
       if (paymentIntent.status === 'succeeded') {
         // 3. update booking status on backend
-        await axiosSecure.patch(`/booking/approve/${booking._id}`, {
-          status: 'confirmed',
+        await axiosSecure.patch(`/booking/pay/${booking._id}`, {
           paid: true,
           couponCode: appliedCoupon ? couponCode : null,
           discountAmount: discountAmount
@@ -121,8 +120,10 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
           showConfirmButton: false,
           timer: 3000
         });
+        setError(''); // Clear error on success
         onSuccess();
         onClose();
+e();
       } else {
         setError('Payment failed. Please try again.');
       }

@@ -16,9 +16,20 @@ const PaymentHistory = () => {
         queryKey: ['paymentHistory', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`payments?email=${user.email}`);
-            // filter for the logged-in user's payments
-            return res.data.filter(p => p.email === user.email);
+            if (!user?.email) throw new Error('User not logged in');
+            try {
+                const res = await axiosSecure.get(`payments?email=${user.email}`);
+                // Debug: log the data
+                console.log('Payment API response:', res.data);
+                if (!Array.isArray(res.data)) {
+                    throw new Error('Invalid payment data format');
+                }
+                return res.data.filter(p => p.email === user.email);
+            } catch (err) {
+                // Debug: log the error
+                console.error('Payment history fetch error:', err);
+                throw err;
+            }
         },
     });
 

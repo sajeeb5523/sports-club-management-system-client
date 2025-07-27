@@ -55,7 +55,6 @@ const BookingModal = ({ court, onClose }) => {
                 date: selectedDate,
                 slots: selectedSlots,
                 total: calculateTotalPrice(),
-                status: 'pending', // add booking status
                 email: user.email,
             };
             const res = await axiosSecure.post('/booking', bookingData);

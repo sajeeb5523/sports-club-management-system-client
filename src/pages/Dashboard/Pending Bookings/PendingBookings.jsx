@@ -8,23 +8,41 @@ const PendingBookings = () => {
     const { user } = useAuth();
     const queryClient = useQueryClient();
 
-    // fetch pending bookings for the logged-in user
-    const {
-        data: bookings = [],
-        isLoading,
-        isError,
-        error,
-    } = useQuery({
-        queryKey: ['pendingBookings', user?.email],
+    // Fetch user info including role
+    const { data: userInfo, isLoading: userInfoLoading } = useQuery({
+        queryKey: ['userInfo', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`booking?email=${user.email}`);
-            // filter for pending bookings for the logged-in user
-            return res.data.filter(b => b.status === 'pending' && b.email === user.email);
+            const res = await axiosSecure.get(`/users/${user.email}`);
+            return res.data;
         },
     });
 
-    console.log(bookings);
+    // fetch pending bookings for the logged-in user
+    const {
+    data: bookings = [],
+    isLoading,
+    isError,
+    error,
+} = useQuery({
+    queryKey: ['pendingBookings', userInfo?.role === 'admin' ? 'admin' : user?.email],
+    enabled: !!user?.email,
+    staleTime: 10000, // 10 seconds
+    refetchInterval: 5000, // 5 seconds
+    queryFn: async () => {
+        if (userInfo?.role === 'admin') {
+            // Admin: fetch all pending bookings
+            const res = await axiosSecure.get('booking?status=pending');
+            return res.data;
+        } else {
+            // Normal user: fetch only their pending bookings
+            const res = await axiosSecure.get(`booking?email=${user.email}&status=pending`);
+            return res.data;
+        }
+    },
+});
+
+    // console.log(bookings);
 
     // mutation for cancelling a booking
     const cancelMutation = useMutation({
@@ -39,7 +57,7 @@ const PendingBookings = () => {
     // mutation for approving a booking
     const approveMutation = useMutation({
         mutationFn: async (id) => {
-            await axiosSecure.patch(`/booking/approve/${id}`, { status: 'confirmed' });
+            await axiosSecure.patch(`/booking/approve/${id}`, { email: user.email });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['pendingBookings', user?.email] });
@@ -87,13 +105,16 @@ const PendingBookings = () => {
                         >
                             {cancelMutation.isLoading ? 'Cancelling...' : 'Cancel'}
                         </button>
-                        <button
-                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition disabled:opacity-50"
-                            onClick={() => handleApprove(booking._id)}
-                            disabled={approveMutation.isLoading}
-                        >
-                            {approveMutation.isLoading ? 'Approving...' : 'Approve'}
-                        </button>
+                        {userInfoLoading ? (
+                            <span>Loading...</span>
+                        ) : userInfo?.role === 'admin' && (
+                            <button
+                                onClick={() => approveMutation.mutate(booking._id)}
+                                className="btn btn-success btn-sm"
+                            >
+                                Approve
+                            </button>
+                        )}
                     </div>
                 ))}
             </div>
