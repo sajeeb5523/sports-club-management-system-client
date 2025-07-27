@@ -16,7 +16,7 @@ const PaymentHistory = () => {
         queryKey: ['paymentHistory', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get('/payments');
+            const res = await axiosSecure.get(`payments?email=${user.email}`);
             // filter for the logged-in user's payments
             return res.data.filter(p => p.email === user.email);
         },

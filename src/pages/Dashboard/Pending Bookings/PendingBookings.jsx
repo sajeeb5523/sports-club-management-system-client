@@ -18,7 +18,7 @@ const PendingBookings = () => {
         queryKey: ['pendingBookings', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get('/booking');
+            const res = await axiosSecure.get(`booking?email=${user.email}`);
             // filter for pending bookings for the logged-in user
             return res.data.filter(b => b.status === 'pending' && b.email === user.email);
         },

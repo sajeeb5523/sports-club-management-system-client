@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 const ConfirmedBookings = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-    
+
     const {
         data: bookings = [],
         isLoading,
@@ -16,7 +16,8 @@ const ConfirmedBookings = () => {
         queryKey: ['confirmedPaidBookings', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get('/booking');
+            const res = await axiosSecure.get(`booking?email=${user.email}`);
+            // filter for confirmed and paid bookings for the logged-in user
             return res.data.filter(b => b.status === 'confirmed' && b.email === user.email && b.paid);
         },
     });
@@ -33,7 +34,7 @@ const ConfirmedBookings = () => {
 
     return (
         <div className="max-w-4xl p-4">
-            <h2 className="text-2xl font-bold mb-5">Confirmed Bookings: {bookings.length}</h2>
+            <h2 className="text-2xl font-bold mb-5">Paid & Confirmed Bookings: {bookings.length}</h2>
             <div className="space-y-6">
                 {bookings.map(booking => (
                     <div key={booking._id} className="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
