@@ -13,6 +13,7 @@ import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBooki
 import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBookings";
 import PaymentHistory from "../pages/Dashboard/Payment History/PaymentHistory";
 import MakeAnnouncement from "../pages/Dashboard/Make Announcement/MakeAnnouncement";
+import AdminProfile from "../pages/Dashboard/Admin Profile/AdminProfile";
 
 export const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
                 path: 'make-announcement',
                 Component: MakeAnnouncement,
             },
+            {
+                path: 'admin-profile',
+                Component: AdminProfile,
+            }
         ]
     },
 ]);

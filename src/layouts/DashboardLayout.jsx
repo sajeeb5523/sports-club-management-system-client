@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaUser, FaClock, FaCheckCircle, FaMoneyBill, FaBullhorn } from 'react-icons/fa';
+import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
@@ -28,7 +28,7 @@ const DashboardLayout = () => {
                             </svg>
                         </label>
                     </div>
-                    <div className="mx-2 flex-1 px-2 lg:hidden">Navbar Title</div>
+                    <div className="mx-2 flex-1 px-2 lg:hidden"></div>
                 </div>
                 {/* Page content here */}
                 <Outlet></Outlet>
@@ -60,13 +60,13 @@ const DashboardLayout = () => {
 
                     <li>
                         <NavLink to='/dashboard/approved-bookings'>
-                            <FaClock className="inline-block mr-2" />Approved Bookings
+                            <FaCheckCircle className="inline-block mr-2" />Approved Bookings
                         </NavLink>
                     </li>
 
                     <li>
                         <NavLink to='/dashboard/confirmed-bookings'>
-                            <FaCheckCircle className="inline-block mr-2" />Confirmed Bookings
+                            <FaClipboardCheck className="inline-block mr-2" />Confirmed Bookings
                         </NavLink>
                     </li>
 
@@ -79,6 +79,12 @@ const DashboardLayout = () => {
                     <li>
                         <NavLink to='/dashboard/make-announcement'>
                             <FaBullhorn className="inline-block mr-2" />Make Announcement
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/admin-profile'>
+                            <FaUser className="inline-block mr-2" />Admin Profile
                         </NavLink>
                     </li>
 

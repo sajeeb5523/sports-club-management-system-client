@@ -10,9 +10,10 @@ const useAxiosSecure = () => {
     const { user } = useAuth();
 
     axiosSecure.interceptors.request.use(config => {
-        
+        // const token = localStorage.getItem('accessToken');
         config.headers.Authorization = `Bearer ${user.accessToken}`
-
+        // if (token) {
+        // }
         return config;
     }, error => {
         return Promise.reject(error);
