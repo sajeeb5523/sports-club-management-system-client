@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn } from 'react-icons/fa';
+import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn, FaUserShield, FaUsers, FaCrown } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
 
 const DashboardLayout = () => {
@@ -84,13 +84,19 @@ const DashboardLayout = () => {
 
                     <li>
                         <NavLink to='/dashboard/admin-profile'>
-                            <FaUser className="inline-block mr-2" />Admin Profile
+                            <FaUserShield className="inline-block mr-2" />Admin Profile
                         </NavLink>
                     </li>
                     
                     <li>
                         <NavLink to='/dashboard/manage-members'>
-                            <FaUser className="inline-block mr-2" />Manage Members
+                            <FaCrown className="inline-block mr-2" />Manage Members
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to='/dashboard/all-users'>
+                            <FaUsers className="inline-block mr-2" />All Users
                         </NavLink>
                     </li>
 
