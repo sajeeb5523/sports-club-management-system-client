@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import useUserData from '../../hooks/useUserData';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 import BookingModal from './BookingModal';
 import tennis1Image from '../../assets/tennis court-1.jpg';
 import tennis2Image from '../../assets/tennis court-2.jpg';
@@ -16,99 +18,42 @@ const Courts = () => {
     const navigate = useNavigate();
     const [selectedCourt, setSelectedCourt] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
-    const courts = [
-        {
-            id: 1,
-            name: "Tennis Court 1",
-            type: "Tennis",
-            image: tennis1Image,
-            price: 1200,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 2,
-            name: "Tennis Court 2",
-            type: "Tennis",
-            image: tennis2Image,
-            price: 1200,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 3,
-            name: "Badminton Court 1",
-            type: "Badminton",
-            image: badminton1Image,
-            price: 800,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 4,
-            name: "Badminton Court 2",
-            type: "Badminton",
-            image: badminton2Image,
-            price: 800,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 5,
-            name: "Squash Court 1",
-            type: "Squash",
-            image: squash1Image,
-            price: 1000,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 6,
-            name: "Squash Court 2",
-            type: "Squash",
-            image: squash2Image,
-            price: 1000,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
+    // image mapping for court types
+    const getCourtImage = (courtName, courtType) => {
+        const name = courtName.toLowerCase();
+        const type = courtType.toLowerCase();
+        
+        if (type.includes('tennis')) {
+            return name.includes('1') ? tennis1Image : tennis2Image;
+        } else if (type.includes('badminton')) {
+            return name.includes('1') ? badminton1Image : badminton2Image;
+        } else if (type.includes('squash')) {
+            return name.includes('1') ? squash1Image : squash2Image;
         }
-    ];
+        return tennis1Image; // default fallback
+    };
+
+    // fetch courts data from backend
+    const { data: courts = [], isLoading, error } = useQuery({
+        queryKey: ['courts'],
+        queryFn: async () => {
+            const response = await axiosSecure.get('/courts');
+            return response.data.map(court => ({
+                ...court,
+                image: getCourtImage(court.name, court.type),
+                slots: court.slots || [
+                    "09:00 AM - 10:00 AM",
+                    "10:00 AM - 11:00 AM",
+                    "11:00 AM - 12:00 PM",
+                    "02:00 PM - 03:00 PM",
+                    "03:00 PM - 04:00 PM",
+                    "04:00 PM - 05:00 PM"
+                ]
+            }));
+        }
+    });
 
     const handleBookNow = (court) => {
         if (!user) {
@@ -126,6 +71,36 @@ const Courts = () => {
         setIsModalOpen(false);
         setSelectedCourt(null);
     };
+
+    // loading state
+    if (isLoading) {
+        return (
+            <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700 flex items-center justify-center">
+                <div className="text-center text-white">
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"></div>
+                    <h2 className="text-2xl font-bold">Loading Courts...</h2>
+                </div>
+            </div>
+        );
+    }
+
+    // error state
+    if (error) {
+        return (
+            <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700 flex items-center justify-center">
+                <div className="text-center text-white">
+                    <h2 className="text-3xl font-bold mb-4">⚠️ Error Loading Courts</h2>
+                    <p className="text-lg mb-4">Unable to fetch court information. Please try again later.</p>
+                    <button 
+                        onClick={() => window.location.reload()} 
+                        className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                    >
+                        Retry
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700">

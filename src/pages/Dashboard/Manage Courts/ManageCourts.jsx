@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 import tennis1Image from '../../../assets/tennis court-1.jpg';
 import tennis2Image from '../../../assets/tennis court-2.jpg';
 import badminton1Image from '../../../assets/badminton court-1.jpg';
@@ -8,102 +10,119 @@ import squash1Image from '../../../assets/squash court-1.jpg';
 import squash2Image from '../../../assets/squash court-2.jpg';
 
 const ManageCourts = () => {
-    const [courts, setCourts] = useState([
-        {
-            id: 1,
-            name: "Tennis Court 1",
-            type: "Tennis",
-            image: tennis1Image,
-            price: 1200,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
+    const axiosSecure = useAxiosSecure();
+    
+    // fetch courts from API with auto-refresh
+    const { data: courts = [], isLoading, refetch, error } = useQuery({
+        queryKey: ['courts'],
+        queryFn: async () => {
+            try {
+                const res = await axiosSecure.get('/courts');
+                return res.data;
+            } catch (error) {
+                // if API fails, return default courts with local images
+                console.warn('Courts API not available, using default data:', error.message);
+                return [
+                    {
+                        _id: '1',
+                        name: "Tennis Court 1",
+                        type: "Tennis",
+                        image: tennis1Image,
+                        price: 1200,
+                        slots: [
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    },
+                    {
+                        _id: '2',
+                        name: "Tennis Court 2",
+                        type: "Tennis",
+                        image: tennis2Image,
+                        price: 1200,
+                        slots: [
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    },
+                    {
+                        _id: '3',
+                        name: "Badminton Court 1",
+                        type: "Badminton",
+                        image: badminton1Image,
+                        price: 800,
+                        slots: [
+                            "08:00 AM - 09:00 AM",
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "01:00 PM - 02:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    },
+                    {
+                        _id: '4',
+                        name: "Badminton Court 2",
+                        type: "Badminton",
+                        image: badminton2Image,
+                        price: 800,
+                        slots: [
+                            "08:00 AM - 09:00 AM",
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "01:00 PM - 02:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    },
+                    {
+                        _id: '5',
+                        name: "Squash Court 1",
+                        type: "Squash",
+                        image: squash1Image,
+                        price: 1000,
+                        slots: [
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    },
+                    {
+                        _id: '6',
+                        name: "Squash Court 2",
+                        type: "Squash",
+                        image: squash2Image,
+                        price: 1000,
+                        slots: [
+                            "09:00 AM - 10:00 AM",
+                            "10:00 AM - 11:00 AM",
+                            "11:00 AM - 12:00 PM",
+                            "02:00 PM - 03:00 PM",
+                            "03:00 PM - 04:00 PM",
+                            "04:00 PM - 05:00 PM"
+                        ]
+                    }
+                ];
+            }
         },
-        {
-            id: 2,
-            name: "Tennis Court 2",
-            type: "Tennis",
-            image: tennis2Image,
-            price: 1200,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 3,
-            name: "Badminton Court 1",
-            type: "Badminton",
-            image: badminton1Image,
-            price: 800,
-            slots: [
-                "08:00 AM - 09:00 AM",
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "01:00 PM - 02:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 4,
-            name: "Badminton Court 2",
-            type: "Badminton",
-            image: badminton2Image,
-            price: 800,
-            slots: [
-                "08:00 AM - 09:00 AM",
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "01:00 PM - 02:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 5,
-            name: "Squash Court 1",
-            type: "Squash",
-            image: squash1Image,
-            price: 1000,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        },
-        {
-            id: 6,
-            name: "Squash Court 2",
-            type: "Squash",
-            image: squash2Image,
-            price: 1000,
-            slots: [
-                "09:00 AM - 10:00 AM",
-                "10:00 AM - 11:00 AM",
-                "11:00 AM - 12:00 PM",
-                "02:00 PM - 03:00 PM",
-                "03:00 PM - 04:00 PM",
-                "04:00 PM - 05:00 PM"
-            ]
-        }
-    ]);
+        refetchInterval: 30000, // auto-refresh every 30 seconds
+        staleTime: 10000 // consider data stale after 10 seconds
+    });
 
     const [showModal, setShowModal] = useState(false);
     const [editingCourt, setEditingCourt] = useState(null);
@@ -188,7 +207,7 @@ const ManageCourts = () => {
     };
 
     // save court (add or update)
-    const saveCourt = () => {
+    const saveCourt = async () => {
         if (!formData.name || !formData.type || !formData.price || formData.slots.length === 0) {
             toast.error('Please fill all fields and add at least one slot');
             return;
@@ -202,52 +221,72 @@ const ManageCourts = () => {
             image: defaultImages[formData.type]
         };
 
-        if (editingCourt) {
-            // update existing court
-            setCourts(prev => prev.map(court => 
-                court.id === editingCourt.id 
-                    ? { ...courtData, id: editingCourt.id }
-                    : court
-            ));
-            toast.success('Court updated successfully!');
-        } else {
-            // add new court
-            const newId = Math.max(...courts.map(c => c.id)) + 1;
-            setCourts(prev => [...prev, { ...courtData, id: newId }]);
-            toast.success('Court added successfully!');
+        try {
+            if (editingCourt) {
+                // update existing court
+                await axiosSecure.put(`/courts/${editingCourt._id}`, courtData);
+                toast.success('Court updated successfully!');
+            } else {
+                // add new court
+                await axiosSecure.post('/courts', courtData);
+                toast.success('Court added successfully!');
+            }
+            
+            // refresh the courts list
+            refetch();
+            closeModal();
+        } catch (error) {
+            console.error('Error saving court:', error);
+            toast.error('Failed to save court. Please try again.');
         }
-
-        closeModal();
     };
 
     // delete court
-    const deleteCourt = (courtId) => {
+    const deleteCourt = async (courtId) => {
         if (window.confirm('Are you sure you want to delete this court?')) {
-            setCourts(prev => prev.filter(court => court.id !== courtId));
-            toast.success('Court deleted successfully!');
+            try {
+                await axiosSecure.delete(`/courts/${courtId}`);
+                toast.success('Court deleted successfully!');
+                // r
+                // efresh the courts list
+                refetch();
+            } catch (error) {
+                console.error('Error deleting court:', error);
+                toast.error('Failed to delete court. Please try again.');
+            }
         }
     };
 
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-800">Manage Courts</h1>
-                <button
-                    onClick={openAddModal}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-                >
-                    Add New Court
-                </button>
+                <div>
+                    <h1 className="text-3xl font-bold text-gray-800">Manage Courts</h1>
+                    {isLoading && <p className="text-sm text-gray-500 mt-1">Loading courts...</p>}
+                    {error && <p className="text-sm text-red-500 mt-1">Failed to load courts</p>}
+                </div>
+                <div className="flex gap-3">
+                    
+                    <button
+                        onClick={openAddModal}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                    >
+                        Add New Court
+                    </button>
+                </div>
             </div>
 
             {/* courts grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {courts.map((court) => (
-                    <div key={court.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div key={court._id || court.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img 
-                            src={court.image} 
+                            src={court.image || defaultImages[court.type]} 
                             alt={court.name}
                             className="w-full h-48 object-cover"
+                            onError={(e) => {
+                                e.target.src = defaultImages[court.type];
+                            }}
                         />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">{court.name}</h3>
@@ -278,7 +317,7 @@ const ManageCourts = () => {
                                     Edit
                                 </button>
                                 <button
-                                    onClick={() => deleteCourt(court.id)}
+                                    onClick={() => deleteCourt(court._id || court.id)}
                                     className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded font-medium transition-colors"
                                 >
                                     Delete
