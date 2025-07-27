@@ -7,6 +7,7 @@ import Courts from "../pages/Courts/Courts";
 import PrivateRoute from '../routes/PrivateRoutes'
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import PendingBookings from "../pages/Dashboard/Pending Bookings/PendingBookings";
 import ApprovedBookings from "../pages/Dashboard/Approved Bookings/ApprovedBookings";
 import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBookings";
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
+            {
+                index: true,
+                Component: DashboardHome,
+            },
             {
                 path: 'my-profile',
                 Component: MyProfile,

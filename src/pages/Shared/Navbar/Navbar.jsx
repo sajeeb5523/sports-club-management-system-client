@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import useUserData from '../../../hooks/useUserData';
 import { TbLogout } from "react-icons/tb";
 import { MdDashboard } from "react-icons/md";
+import { FaCrown } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import Logo from '../Logo/Logo';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const { userData } = useUserData();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const handleLogout = () => {
@@ -74,17 +77,34 @@ const Navbar = () => {
 
                 {user ? (
                     <div className="relative" ref={dropdownRef}>
-                        <img
-                            src={user.photoURL || ''}
-                            className='w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors'
-                            alt="Profile"
-                            onClick={() => setIsDropdownOpen((prev) => !prev)}
-                        />
+                        <div className="relative">
+                            <img
+                                src={user.photoURL || ''}
+                                className='w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors'
+                                alt="Profile"
+                                onClick={() => setIsDropdownOpen((prev) => !prev)}
+                            />
+                            {userData?.isMember && (
+                                <div className="absolute -top-1 -right-1 bg-yellow-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
+                                    <FaCrown className="w-3 h-3" />
+                                </div>
+                            )}
+                        </div>
                         {isDropdownOpen && (
                             <div className="absolute right-0 top-full mt-2 bg-base-100 shadow-lg rounded-lg w-64 border border-gray-200 z-50">
                                 <div className="p-4 border-b border-gray-100">
-                                    <p className="font-semibold text-gray-800">{user.displayName || 'User'}</p>
-                                    <p className="text-sm text-gray-600">{user.email}</p>
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="font-semibold text-gray-800">{user.displayName || 'User'}</p>
+                                            <p className="text-sm text-gray-600">{user.email}</p>
+                                        </div>
+                                        {userData?.isMember && (
+                                            <div className="flex items-center gap-1 bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                                                <FaCrown className="w-3 h-3" />
+                                                <span>Member</span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <ul className="menu menu-sm p-2 gap-1">
                                     <li>

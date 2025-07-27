@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
+import useUserData from '../../hooks/useUserData';
 import BookingModal from './BookingModal';
 import tennis1Image from '../../assets/tennis court-1.jpg';
 import tennis2Image from '../../assets/tennis court-2.jpg';
@@ -11,6 +12,7 @@ import squash2Image from '../../assets/squash court-2.jpg';
 
 const Courts = () => {
     const { user } = useContext(AuthContext);
+    const { userData } = useUserData();
     const navigate = useNavigate();
     const [selectedCourt, setSelectedCourt] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -130,6 +132,12 @@ const Courts = () => {
             <div className="text-center mb-12 text-white">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Available Courts</h1>
                 <p className="text-lg md:text-xl opacity-90">Book your favorite court and enjoy your game!</p>
+                {userData?.isMember && (
+                    <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500 text-white px-4 py-2 rounded-full">
+                        <span className="text-lg">👑</span>
+                        <span className="font-semibold">Member Discount Available!</span>
+                    </div>
+                )}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 {courts.map((court) => (

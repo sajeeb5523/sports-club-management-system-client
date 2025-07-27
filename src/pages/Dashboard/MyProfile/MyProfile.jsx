@@ -1,9 +1,11 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-import { FaUser, FaEnvelope, FaCalendarAlt, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import useUserData from '../../../hooks/useUserData';
+import { FaUser, FaEnvelope, FaCalendarAlt, FaCheckCircle, FaTimesCircle, FaCrown, FaIdCard } from 'react-icons/fa';
 
 const MyProfile = () => {
     const { user } = useAuth();
+    const { userData, isLoading: userDataLoading } = useUserData();
 
     // format the registration date
     const formatRegistrationDate = (timestamp) => {
@@ -15,6 +17,17 @@ const MyProfile = () => {
             day: 'numeric',
             hour: '2-digit',
             minute: '2-digit'
+        });
+    };
+
+    // format member since date
+    const formatMemberSince = (timestamp) => {
+        if (!timestamp) return 'N/A';
+        const date = new Date(timestamp);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
     };
 
@@ -48,7 +61,7 @@ const MyProfile = () => {
                             {/* user info */}
                             <div className="flex-1">
                                 <h2 className="text-2xl font-bold text-white">{user?.displayName}</h2>
-                                <div className="flex items-center mt-1">
+                                <div className="flex items-center mt-1 space-x-4">
                                     {user?.emailVerified ? (
                                         <div className="flex items-center text-white">
                                             <FaCheckCircle className="w-4 h-4 mr-2" />
@@ -58,6 +71,12 @@ const MyProfile = () => {
                                         <div className="flex items-center text-red-300">
                                             <FaTimesCircle className="w-4 h-4 mr-2" />
                                             <span>Unverified Account</span>
+                                        </div>
+                                    )}
+                                    {userData?.isMember && (
+                                        <div className="flex items-center text-yellow-300">
+                                            <FaCrown className="w-4 h-4 mr-2" />
+                                            <span>Club Member</span>
                                         </div>
                                     )}
                                 </div>
@@ -111,6 +130,31 @@ const MyProfile = () => {
                                         <p className="text-gray-900">
                                             {formatRegistrationDate(user?.metadata?.creationTime)}
                                         </p>
+                                    </div>
+                                </div>
+
+                                {/* member status */}
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                        <FaIdCard className="w-5 h-5 text-yellow-600" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-sm font-medium text-gray-500">Member Status</p>
+                                        <p className="text-gray-900">
+                                            {userData?.isMember ? (
+                                                <span className="flex items-center">
+                                                    <FaCrown className="w-4 h-4 mr-2 text-yellow-500" />
+                                                    Active Member
+                                                </span>
+                                            ) : (
+                                                <span className="text-gray-500">Not a Member</span>
+                                            )}
+                                        </p>
+                                        {userData?.isMember && userData?.memberSince && (
+                                            <p className="text-xs text-gray-500 mt-1">
+                                                Member since: {formatMemberSince(userData.memberSince)}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
                             </div>

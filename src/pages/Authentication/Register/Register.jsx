@@ -32,6 +32,9 @@ const Register = () => {
                 const userInfo = {
                     email: data.email,
                     role: 'user',
+                    isMember: false,
+                    memberSince: null,
+                    lastBookingDate: null,
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString(),
                 }

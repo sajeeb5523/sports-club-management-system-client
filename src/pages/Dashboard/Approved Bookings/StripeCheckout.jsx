@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 // coupons from Capons.jsx
 const availableCoupons = [
-    { code: 'ABC', discount: 5 },
-    { code: 'WELCOME10', discount: 10 },
-    { code: 'SUMMER15', discount: 15 },
-    { code: 'VIP20', discount: 20 },
+  { code: 'ABC', discount: 5 },
+  { code: 'WELCOME10', discount: 10 },
+  { code: 'SUMMER15', discount: 15 },
+  { code: 'VIP20', discount: 20 },
 ];
 
 const StripeCheckout = ({ booking, onSuccess, onClose }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [couponCode, setCouponCode] = useState('');
@@ -35,12 +37,12 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
 
     setCouponLoading(true);
     setCouponError('');
-    
+
     // find the coupon in available coupons
     const foundCoupon = availableCoupons.find(
       coupon => coupon.code.toUpperCase() === couponCode.trim().toUpperCase()
     );
-    
+
     if (foundCoupon) {
       setAppliedCoupon(foundCoupon);
       setCouponError('');
@@ -48,7 +50,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
       setCouponError('Invalid coupon code. Please see the correct coupon code in the home section');
       setAppliedCoupon(null);
     }
-    
+
     setCouponLoading(false);
   };
 
@@ -86,8 +88,8 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
       }
       if (paymentIntent.status === 'succeeded') {
         // 3. update booking status on backend
-        await axiosSecure.patch(`/booking/approve/${booking._id}`, { 
-          status: 'confirmed', 
+        await axiosSecure.patch(`/booking/approve/${booking._id}`, {
+          status: 'confirmed',
           paid: true,
           couponCode: appliedCoupon ? couponCode : null,
           discountAmount: discountAmount
@@ -102,13 +104,22 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
           paymentIntentId: paymentIntent.id,
           date: new Date().toISOString(),
         });
-        // 5. show success message
+        // 5. update user to member status
+        await axiosSecure.patch(`/users/${booking.email}`, {
+          isMember: true,
+          memberSince: new Date().toISOString(),
+          lastBookingDate: new Date().toISOString()
+        });
+        // 6. invalidate user data query to refresh member status
+        queryClient.invalidateQueries({ queryKey: ['userData', booking.email] });
+
+        // 7. show success message with member status
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Payment successful! Your booking is confirmed.',
+          title: 'Payment successful! Your booking is confirmed and you are now a member!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 3000
         });
         onSuccess();
         onClose();
@@ -125,7 +136,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">Booking Payment</h2>
-        
+
         {/* Coupon Code Section */}
         <div className="mb-6 p-4 bg-gray-50 rounded-lg">
           <label className="block text-sm font-medium text-gray-700 mb-2">Coupon Code</label>
@@ -163,11 +174,11 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
               ✓ Coupon applied! {appliedCoupon.discount}% discount
             </div>
           )}
-          
+
           {/* Available Coupons Display */}
-          
+
         </div>
-        
+
         {/* Booking Details Section */}
         <div className="mb-6 space-y-3">
           <div>
@@ -179,7 +190,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
               className="w-full p-2 border border-gray-300 rounded bg-gray-50 text-gray-700"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Court Type</label>
             <input
@@ -189,7 +200,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
               className="w-full p-2 border border-gray-300 rounded bg-gray-50 text-gray-700"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Slots</label>
             <input
@@ -199,7 +210,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
               className="w-full p-2 border border-gray-300 rounded bg-gray-50 text-gray-700"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Price</label>
             <div className="space-y-1">
@@ -219,7 +230,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
             <input
@@ -237,9 +248,9 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Card Details</label>
             <CardElement className="p-3 border border-gray-300 rounded" />
           </div>
-          
+
           {error && <div className="text-red-500 mb-4 text-sm">{error}</div>}
-          
+
           <button
             type="submit"
             className="w-full bg-green-600 text-white py-3 rounded font-medium hover:bg-green-700 transition-colors"
@@ -248,9 +259,9 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
             {loading ? 'Processing Payment...' : `Pay ৳${finalPrice.toFixed(2)}`}
           </button>
         </form>
-        
-        <button 
-          className="mt-4 w-full text-gray-500 hover:text-gray-700 transition-colors" 
+
+        <button
+          className="mt-4 w-full text-gray-500 hover:text-gray-700 transition-colors"
           onClick={onClose}
         >
           Cancel

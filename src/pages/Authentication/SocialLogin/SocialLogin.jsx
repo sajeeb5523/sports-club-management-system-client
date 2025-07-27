@@ -20,6 +20,9 @@ const SocialLogin = () => {
                 const userInfo = {
                     email: user.email,
                     role: 'user',  // default role 
+                    isMember: false,
+                    memberSince: null,
+                    lastBookingDate: null,
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString(),
                 }

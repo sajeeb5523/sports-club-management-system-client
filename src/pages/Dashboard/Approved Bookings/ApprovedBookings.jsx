@@ -82,6 +82,7 @@ const ApprovedBookings = () => {
                             setSelectedBooking(null);
                             queryClient.invalidateQueries({ queryKey: ['confirmedBookings', user?.email] });
                             queryClient.invalidateQueries({ queryKey: ['approvedBookings', user?.email] });
+                            queryClient.invalidateQueries({ queryKey: ['userData', user?.email] });
                         }}
                         onClose={() => setSelectedBooking(null)}
                     />
