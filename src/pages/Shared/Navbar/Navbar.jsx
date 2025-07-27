@@ -78,12 +78,24 @@ const Navbar = () => {
                 {user ? (
                     <div className="relative" ref={dropdownRef}>
                         <div className="relative">
-                            <img
-                                src={user.photoURL || ''}
-                                className='w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors'
-                                alt="Profile"
+                            {user.photoURL ? (
+                                <img
+                                    src={user.photoURL}
+                                    className='w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors object-cover'
+                                    alt="Profile"
+                                    onClick={() => setIsDropdownOpen((prev) => !prev)}
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                />
+                            ) : null}
+                            <div 
+                                className={`w-12 h-12 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-colors bg-gray-300 flex items-center justify-center text-gray-600 font-semibold ${user.photoURL ? 'hidden' : 'flex'}`}
                                 onClick={() => setIsDropdownOpen((prev) => !prev)}
-                            />
+                            >
+                                {user.displayName ? user.displayName.charAt(0).toUpperCase() : user.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                            </div>
                             {userData?.isMember && (
                                 <div className="absolute -top-1 -right-1 bg-yellow-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
                                     <FaCrown className="w-3 h-3" />

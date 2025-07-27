@@ -87,6 +87,12 @@ const DashboardLayout = () => {
                             <FaUser className="inline-block mr-2" />Admin Profile
                         </NavLink>
                     </li>
+                    
+                    <li>
+                        <NavLink to='/dashboard/manage-members'>
+                            <FaUser className="inline-block mr-2" />Manage Members
+                        </NavLink>
+                    </li>
 
                 </ul>
             </div>

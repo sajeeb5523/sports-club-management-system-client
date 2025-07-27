@@ -19,18 +19,12 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(async (result) => {
                 console.log(result.user);
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Register successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(`${location.state ? location.state : '/'}`)
-
                 // update userinfo in the database
                 const userInfo = {
                     email: data.email,
+                    name: data.name,
+                    displayName: data.name,
+                    photoURL: profilePic,
                     role: 'user',
                     isMember: false,
                     memberSince: null,
@@ -45,15 +39,37 @@ const Register = () => {
                 // update user profile in the firebase
                 const userProfile = {
                     displayName: data.name,
-                    photoUrl: profilePic
+                    photoURL: profilePic
                 }
-                updateUserProfile(userProfile)
-                    .then(() => {
-                        console.log('profile name pic updated');
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
+                
+                try {
+                    await updateUserProfile(userProfile);
+                    console.log('profile name pic updated');
+                    
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Register successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    
+                    // navigate after profile update is complete
+                    setTimeout(() => {
+                        navigate(`${location.state ? location.state : '/'}`);
+                    }, 1600);
+                } catch (error) {
+                    console.log('Profile update error:', error);
+                    // still navigate even if profile update fails
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Register successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(`${location.state ? location.state : '/'}`);
+                }
 
             })
             .catch(error => {

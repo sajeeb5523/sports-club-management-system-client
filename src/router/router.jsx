@@ -14,6 +14,7 @@ import ConfirmedBookings from "../pages/Dashboard/Confirmed Bookings/ConfirmedBo
 import PaymentHistory from "../pages/Dashboard/Payment History/PaymentHistory";
 import MakeAnnouncement from "../pages/Dashboard/Make Announcement/MakeAnnouncement";
 import AdminProfile from "../pages/Dashboard/Admin Profile/AdminProfile";
+import ManageMembers from "../pages/Dashboard/Manage Members/ManageMembers";
 
 export const router = createBrowserRouter([
     {
@@ -73,7 +74,11 @@ export const router = createBrowserRouter([
             {
                 path: 'admin-profile',
                 Component: AdminProfile,
-            }
+            },
+            {
+                path: 'manage-members',
+                Component: ManageMembers,
+            },
         ]
     },
 ]);

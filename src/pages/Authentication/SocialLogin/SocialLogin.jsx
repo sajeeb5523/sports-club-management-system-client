@@ -19,6 +19,9 @@ const SocialLogin = () => {
                 // update userinfo in the database 
                 const userInfo = {
                     email: user.email,
+                    name: user.displayName,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
                     role: 'user',  // default role 
                     isMember: false,
                     memberSince: null,

@@ -20,27 +20,27 @@ const PendingBookings = () => {
 
     // fetch pending bookings for the logged-in user
     const {
-    data: bookings = [],
-    isLoading,
-    isError,
-    error,
-} = useQuery({
-    queryKey: ['pendingBookings', userInfo?.role === 'admin' ? 'admin' : user?.email],
-    enabled: !!user?.email,
-    staleTime: 10000, // 10 seconds
-    refetchInterval: 5000, // 5 seconds
-    queryFn: async () => {
-        if (userInfo?.role === 'admin') {
-            // Admin: fetch all pending bookings
-            const res = await axiosSecure.get('booking?status=pending');
-            return res.data;
-        } else {
-            // Normal user: fetch only their pending bookings
-            const res = await axiosSecure.get(`booking?email=${user.email}&status=pending`);
-            return res.data;
-        }
-    },
-});
+        data: bookings = [],
+        isLoading,
+        isError,
+        error,
+    } = useQuery({
+        queryKey: ['pendingBookings', userInfo?.role === 'admin' ? 'admin' : user?.email],
+        enabled: !!user?.email,
+        staleTime: 10000, // 10 seconds
+        refetchInterval: 5000, // 5 seconds
+        queryFn: async () => {
+            if (userInfo?.role === 'admin') {
+                // Admin: fetch all pending bookings
+                const res = await axiosSecure.get('booking?status=pending');
+                return res.data;
+            } else {
+                // Normal user: fetch only their pending bookings
+                const res = await axiosSecure.get(`booking?email=${user.email}&status=pending`);
+                return res.data;
+            }
+        },
+    });
 
     // console.log(bookings);
 
@@ -99,18 +99,21 @@ const PendingBookings = () => {
                             <div><span className="font-semibold">Booked By:</span> {booking.email}</div>
                         </div>
                         <button
-                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition disabled:opacity-50"
+                            className="px-4 py-1.5 bg-red-500 text-white rounded hover:bg-red-700 transition disabled:opacity-50"
                             onClick={() => handleCancel(booking._id)}
                             disabled={cancelMutation.isLoading}
                         >
-                            {cancelMutation.isLoading ? 'Cancelling...' : 'Cancel'}
+                            {userInfo?.role === 'admin'
+                                ? (cancelMutation.isLoading ? 'Rejecting...' : 'Reject')
+                                : (cancelMutation.isLoading ? 'Cancelling...' : 'Cancel')}
+
                         </button>
                         {userInfoLoading ? (
                             <span>Loading...</span>
                         ) : userInfo?.role === 'admin' && (
                             <button
                                 onClick={() => approveMutation.mutate(booking._id)}
-                                className="btn btn-success btn-sm"
+                                className="px-4 py-1.5 bg-green-500 text-white rounded hover:bg-green-700 transition disabled:opacity-50"
                             >
                                 Approve
                             </button>
