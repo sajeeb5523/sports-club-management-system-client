@@ -14,6 +14,12 @@ const Footer = () => {
           <br />
           Providing reliable tech since 2020
         </p>
+        <div className='my-6'>
+          <h1 className='text-lg'>Contact Us</h1>
+          <p>Email: sajeebaljabed1@gmail.com</p>
+          <p>Phone: +8801571595523</p>
+          <p>Address: Dinajpur, Bangladesh</p>
+        </div>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
       <nav>
