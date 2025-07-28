@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import useUserData from '../../../hooks/useUserData';
+import useUserRole from '../../../hooks/useUserRole';
 import { TbLogout } from "react-icons/tb";
 import { MdDashboard } from "react-icons/md";
 import { FaCrown } from "react-icons/fa";
@@ -11,6 +12,7 @@ import Logo from '../Logo/Logo';
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const { userData } = useUserData();
+    const { role } = useUserRole();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const handleLogout = () => {
@@ -107,13 +109,24 @@ const Navbar = () => {
                                 <div className="p-4 border-b border-gray-100">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <p className="font-semibold text-gray-800">{user.displayName || 'User'}</p>
+                                            <div className="flex items-center gap-2">
+                                                <p className="font-semibold text-gray-800">{user.displayName || 'User'}</p>
+                                                {role === 'admin' && (
+                                                    <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">
+                                                        Admin
+                                                    </span>
+                                                )}
+                                                {role === 'member' && (
+                                                    <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                                                        Member
+                                                    </span>
+                                                )}
+                                            </div>
                                             <p className="text-sm text-gray-600">{user.email}</p>
                                         </div>
                                         {userData?.isMember && (
                                             <div className="flex items-center gap-1 bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
                                                 <FaCrown className="w-3 h-3" />
-                                                <span>Member</span>
                                             </div>
                                         )}
                                     </div>
