@@ -19,6 +19,8 @@ import AllUsers from "../pages/Dashboard/All Users/AllUsers";
 import ManageCourts from "../pages/Dashboard/Manage Courts/ManageCourts";
 import ManageCoupons from "../pages/Dashboard/Manage Coupons/ManageCoupons";
 import ManageBookings from "../pages/Dashboard/Manage Bookings/ManageBookings";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 Component: Register,
+            },
+            {
+                path: '/forbidden',
+                Component: Forbidden,
             }
         ]
     },
@@ -75,30 +81,42 @@ export const router = createBrowserRouter([
                 path: 'make-announcement',
                 Component: MakeAnnouncement,
             },
+
+
+
+
+
+
+
+            // admin only routes
             {
                 path: 'admin-profile',
-                Component: AdminProfile,
+                element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>,
             },
             {
                 path: 'manage-members',
-                Component: ManageMembers,
+                element: <AdminRoute><ManageMembers></ManageMembers></AdminRoute>,
             },
             {
                 path: 'all-users',
-                Component: AllUsers,
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
             },
             {
                 path: 'manage-courts',
-                Component: ManageCourts,
-            },
-            {
-                path:'manage-coupons',
-                Component: ManageCoupons,
+                element: <AdminRoute><ManageCourts></ManageCourts></AdminRoute>,
             },
             {
                 path: 'manage-bookings',
-                Component: ManageBookings,
-            }
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>,
+            },
+            {
+                path: 'manage-coupons',
+                element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>,
+            },
+            {
+                path: 'make-announcement',
+                element: <AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>,
+            },
         ]
     },
 ]);

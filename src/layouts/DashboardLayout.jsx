@@ -80,6 +80,11 @@ const DashboardLayout = () => {
                             <FaMoneyBill className="inline-block mr-2" />Payment History
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to='/dashboard/make-announcement'>
+                            <FaBullhorn className="inline-block mr-2" />Make Announcement
+                        </NavLink>
+                    </li>
 
 
                     {/* admin links */}
