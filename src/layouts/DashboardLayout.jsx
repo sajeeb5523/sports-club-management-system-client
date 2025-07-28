@@ -2,8 +2,13 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import { FaHome, FaUser, FaClock, FaCheckCircle, FaClipboardCheck, FaMoneyBill, FaBullhorn, FaUserShield, FaUsers, FaCrown, FaTicketAlt, FaGavel, FaThLarge, FaCalendarAlt } from 'react-icons/fa';
 import Logo from '../pages/Shared/Logo/Logo';
+import useUserRole from '../hooks/useUserRole';
 
 const DashboardLayout = () => {
+
+    const { role, roleLoading } = useUserRole();
+    console.log(role);
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -76,47 +81,53 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to='/dashboard/make-announcement'>
-                            <FaBullhorn className="inline-block mr-2" />Make Announcement
-                        </NavLink>
-                    </li>
 
-                    <li>
-                        <NavLink to='/dashboard/admin-profile'>
-                            <FaUserShield className="inline-block mr-2" />Admin Profile
-                        </NavLink>
-                    </li>
-                    
-                    <li>
-                        <NavLink to='/dashboard/manage-members'>
-                            <FaCrown className="inline-block mr-2" />Manage Members
-                        </NavLink>
-                    </li>
+                    {/* admin links */}
+                    {!roleLoading && role === 'admin' &&
+                        <>
+                            <li>
+                                <NavLink to='/dashboard/admin-profile'>
+                                    <FaUserShield className="inline-block mr-2" />Admin Profile
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/all-users'>
-                            <FaUsers className="inline-block mr-2" />All Users
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/manage-members'>
+                                    <FaCrown className="inline-block mr-2" />Manage Members
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/manage-courts'>
-                            <FaThLarge className="inline-block mr-2" />Manage Courts 
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/all-users'>
+                                    <FaUsers className="inline-block mr-2" />All Users
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/manage-coupons'>
-                            <FaTicketAlt className="inline-block mr-2" />Manage Coupons
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/manage-courts'>
+                                    <FaThLarge className="inline-block mr-2" />Manage Courts
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/manage-bookings'>
-                            <FaCalendarAlt className="inline-block mr-2" />Manage Bookings
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/manage-bookings'>
+                                    <FaCalendarAlt className="inline-block mr-2" />Manage Bookings
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/manage-coupons'>
+                                    <FaTicketAlt className="inline-block mr-2" />Manage Coupons
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/make-announcement'>
+                                    <FaBullhorn className="inline-block mr-2" />Make Announcement
+                                </NavLink>
+                            </li>
+                        </>
+                    }
 
                 </ul>
             </div>
