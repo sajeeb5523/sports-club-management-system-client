@@ -12,6 +12,7 @@ const availableCoupons = [
   { code: 'WELCOME10', discount: 10 },
   { code: 'SUMMER15', discount: 15 },
   { code: 'VIP20', discount: 20 },
+  { code: 'NEW2025', discount: 50 },
 ];
 
 const StripeCheckout = ({ booking, onSuccess, onClose }) => {

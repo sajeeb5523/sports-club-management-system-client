@@ -21,6 +21,7 @@ import ManageCoupons from "../pages/Dashboard/Manage Coupons/ManageCoupons";
 import ManageBookings from "../pages/Dashboard/Manage Bookings/ManageBookings";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
+import MemberRoute from "../routes/MemberRoute";
 
 export const router = createBrowserRouter([
     {
@@ -66,27 +67,39 @@ export const router = createBrowserRouter([
                 Component: PendingBookings,
             },
             {
-                path: 'approved-bookings',
-                Component: ApprovedBookings,
-            },
-            {
                 path: 'confirmed-bookings',
                 Component: ConfirmedBookings,
-            },
-            {
-                path: 'payment-history',
-                Component: PaymentHistory,
             },
             {
                 path: 'make-announcement',
                 Component: MakeAnnouncement,
             },
 
-
-
-
-
-
+            // member only routes
+            {
+                path: 'my-profile',
+                Component: MyProfile,
+            },
+            {
+                path: 'pending-bookings',
+                Component: PendingBookings,
+            },
+            {
+                path: 'approved-bookings',
+                Component: ApprovedBookings,
+            },
+            {
+                path: 'confirmed-bookings',
+                element: <MemberRoute><ConfirmedBookings></ConfirmedBookings></MemberRoute>,
+            },
+            {
+                path: 'payment-history',
+                element: <MemberRoute><PaymentHistory></PaymentHistory></MemberRoute>,
+            },
+            {
+                path: 'make-announcement',
+                Component: MakeAnnouncement,
+            },
 
             // admin only routes
             {

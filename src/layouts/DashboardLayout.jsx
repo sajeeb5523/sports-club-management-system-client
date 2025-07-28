@@ -51,40 +51,75 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to='/dashboard/my-profile'>
-                            <FaUser className="inline-block mr-2" />My Profile
-                        </NavLink>
-                    </li>
+                    {/* default user links - only show for non-members */}
+                    {!roleLoading && role !== 'member' && role !== 'admin' &&
+                        <>
+                            <li>
+                                <NavLink to='/dashboard/my-profile'>
+                                    <FaUser className="inline-block mr-2" />My Profile
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/pending-bookings'>
-                            <FaClock className="inline-block mr-2" />Pending Bookings
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/pending-bookings'>
+                                    <FaClock className="inline-block mr-2" />Pending Bookings
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/approved-bookings'>
-                            <FaCheckCircle className="inline-block mr-2" />Approved Bookings
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/approved-bookings'>
+                                    <FaCheckCircle className="inline-block mr-2" />Approved Bookings
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to='/dashboard/confirmed-bookings'>
-                            <FaClipboardCheck className="inline-block mr-2" />Confirmed Bookings
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to='/dashboard/make-announcement'>
+                                    <FaBullhorn className="inline-block mr-2" />Announcement
+                                </NavLink>
+                            </li>
+                        </>
+                    }
 
-                    <li>
-                        <NavLink to='/dashboard/payment-history'>
-                            <FaMoneyBill className="inline-block mr-2" />Payment History
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/make-announcement'>
-                            <FaBullhorn className="inline-block mr-2" />Make Announcement
-                        </NavLink>
-                    </li>
+                    {/* member links */}
+                    {!roleLoading && role === 'member' &&
+                        <>
+                            <li>
+                                <NavLink to='/dashboard/my-profile'>
+                                    <FaUser className="inline-block mr-2" />My Profile
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/pending-bookings'>
+                                    <FaClock className="inline-block mr-2" />Pending Bookings
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/approved-bookings'>
+                                    <FaCheckCircle className="inline-block mr-2" />Approved Bookings
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/confirmed-bookings'>
+                                    <FaClipboardCheck className="inline-block mr-2" />Confirmed Bookings
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/payment-history'>
+                                    <FaMoneyBill className="inline-block mr-2" />Payment History
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/make-announcement'>
+                                    <FaBullhorn className="inline-block mr-2" />Announcement
+                                </NavLink>
+                            </li>
+                        </>
+                    }
 
 
                     {/* admin links */}
@@ -93,6 +128,12 @@ const DashboardLayout = () => {
                             <li>
                                 <NavLink to='/dashboard/admin-profile'>
                                     <FaUserShield className="inline-block mr-2" />Admin Profile
+                                </NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/pending-bookings'>
+                                    <FaClock className="inline-block mr-2" />Manage Booking Approval
                                 </NavLink>
                             </li>
 

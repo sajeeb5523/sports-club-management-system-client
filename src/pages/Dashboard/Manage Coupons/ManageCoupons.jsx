@@ -51,9 +51,9 @@ const ManageCoupons = () => {
                 discount: 5,
                 description: 'Expired coupon',
                 expiryDate: '2024-01-31',
-                isActive: false,
+                isActive: true,
                 usageLimit: 200,
-                usedCount: 200
+                usedCount: 130
             }
         ];
     };
@@ -231,60 +231,58 @@ const ManageCoupons = () => {
                 {[...coupons]
                     .sort((a, b) => a.discount - b.discount)
                     .map((coupon) => (
-                    <div key={coupon._id} className="bg-white rounded-lg shadow-md p-6 border">
-                        <div className="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-800">{coupon.code}</h3>
-                                <p className="text-sm text-gray-600">{coupon.description}</p>
+                        <div key={coupon._id} className="bg-white rounded-lg shadow-md p-6 border">
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 className="text-xl font-bold text-gray-800">{coupon.code}</h3>
+                                    <p className="text-sm text-gray-600">{coupon.description}</p>
+                                </div>
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${coupon.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                    }`}>
+                                    {coupon.isActive ? 'Active' : 'Inactive'}
+                                </span>
                             </div>
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                coupon.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                            }`}>
-                                {coupon.isActive ? 'Active' : 'Inactive'}
-                            </span>
-                        </div>
 
-                        <div className="space-y-2 mb-4">
-                            <div className="flex justify-between">
-                                <span className="text-gray-600">Discount:</span>
-                                <span className="font-medium">{coupon.discount}%</span>
+                            <div className="space-y-2 mb-4">
+                                <div className="flex justify-between">
+                                    <span className="text-gray-600">Discount:</span>
+                                    <span className="font-medium">{coupon.discount}%</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-gray-600">Expires:</span>
+                                    <span className="font-medium">{new Date(coupon.expiryDate).toLocaleDateString()}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-gray-600">Usage:</span>
+                                    <span className="font-medium">{coupon.usedCount}/{coupon.usageLimit}</span>
+                                </div>
                             </div>
-                            <div className="flex justify-between">
-                                <span className="text-gray-600">Expires:</span>
-                                <span className="font-medium">{new Date(coupon.expiryDate).toLocaleDateString()}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-gray-600">Usage:</span>
-                                <span className="font-medium">{coupon.usedCount}/{coupon.usageLimit}</span>
-                            </div>
-                        </div>
 
-                        <div className="flex space-x-2">
-                            <button
-                                onClick={() => handleEditCoupon(coupon)}
-                                className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-3 rounded text-sm transition-colors"
-                            >
-                                Edit
-                            </button>
-                            <button
-                                onClick={() => toggleCouponStatus(coupon)}
-                                className={`flex-1 py-2 px-3 rounded text-sm transition-colors ${
-                                    coupon.isActive 
-                                        ? 'bg-orange-500 hover:bg-orange-600 text-white' 
-                                        : 'bg-green-500 hover:bg-green-600 text-white'
-                                }`}
-                            >
-                                {coupon.isActive ? 'Deactivate' : 'Activate'}
-                            </button>
-                            <button
-                                onClick={() => handleDeleteCoupon(coupon._id)}
-                                className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded text-sm transition-colors"
-                            >
-                                Delete
-                            </button>
+                            <div className="flex space-x-2">
+                                <button
+                                    onClick={() => handleEditCoupon(coupon)}
+                                    className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-3 rounded text-sm transition-colors"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() => toggleCouponStatus(coupon)}
+                                    className={`flex-1 py-2 px-3 rounded text-sm transition-colors ${coupon.isActive
+                                            ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                                            : 'bg-green-500 hover:bg-green-600 text-white'
+                                        }`}
+                                >
+                                    {coupon.isActive ? 'Deactivate' : 'Activate'}
+                                </button>
+                                <button
+                                    onClick={() => handleDeleteCoupon(coupon._id)}
+                                    className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded text-sm transition-colors"
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
             </div>
 
             {coupons.length === 0 && (

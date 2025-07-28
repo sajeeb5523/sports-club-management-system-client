@@ -242,7 +242,7 @@ const AllUsers = () => {
                                     {user.isMember ? (
                                         <span className="text-green-600 font-semibold">✓ Member</span>
                                     ) : (
-                                        <span className="text-gray-500">Regular User</span>
+                                        <span className="text-gray-500">User</span>
                                     )}
                                 </td>
                                 <td>
