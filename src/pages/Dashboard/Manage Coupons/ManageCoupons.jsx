@@ -27,33 +27,35 @@ const ManageCoupons = () => {
         return [
             {
                 _id: '1',
-                code: 'WELCOME10',
-                discount: 10,
-                description: 'Welcome discount for new members',
-                expiryDate: '2024-12-31',
+                code: 'ABC',
+                discount: 5,
+                description: 'Discount offer',
+                expiryDate: '2025-12-31',
                 isActive: true,
-                usageLimit: 100,
-                usedCount: 25
             },
             {
                 _id: '2',
-                code: 'SUMMER20',
-                discount: 20,
-                description: 'Summer special discount',
-                expiryDate: '2024-08-31',
+                code: 'WELCOME10',
+                discount: 10,
+                description: 'Welcome discount for new members',
+                expiryDate: '2025-12-31',
                 isActive: true,
-                usageLimit: 50,
-                usedCount: 12
             },
             {
                 _id: '3',
-                code: 'EXPIRED5',
-                discount: 5,
-                description: 'Expired coupon',
-                expiryDate: '2024-01-31',
-                isActive: true,
-                usageLimit: 200,
-                usedCount: 130
+                code: 'SUMMER20',
+                discount: 15,
+                description: 'Summer special discount',
+                expiryDate: '2025-08-31',
+                isActive: true,               
+            },
+            {
+                _id: '4',
+                code: 'VIP20',
+                discount: 20,
+                description: 'Only for those who will book 5 courts.',
+                expiryDate: '2025-01-31',
+                isActive: true,             
             }
         ];
     };
@@ -251,10 +253,6 @@ const ManageCoupons = () => {
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Expires:</span>
                                     <span className="font-medium">{new Date(coupon.expiryDate).toLocaleDateString()}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Usage:</span>
-                                    <span className="font-medium">{coupon.usedCount}/{coupon.usageLimit}</span>
                                 </div>
                             </div>
 

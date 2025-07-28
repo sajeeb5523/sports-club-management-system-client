@@ -12,7 +12,6 @@ const availableCoupons = [
   { code: 'WELCOME10', discount: 10 },
   { code: 'SUMMER15', discount: 15 },
   { code: 'VIP20', discount: 20 },
-  { code: 'NEW2025', discount: 50 },
 ];
 
 const StripeCheckout = ({ booking, onSuccess, onClose }) => {
@@ -50,7 +49,7 @@ const StripeCheckout = ({ booking, onSuccess, onClose }) => {
       setAppliedCoupon(foundCoupon);
       setCouponError('');
     } else {
-      setCouponError('Invalid coupon code. Please see the correct coupon code in the home section');
+      setCouponError('Invalid coupon code. Please see the correct coupon code in the announcement section');
       setAppliedCoupon(null);
     }
 

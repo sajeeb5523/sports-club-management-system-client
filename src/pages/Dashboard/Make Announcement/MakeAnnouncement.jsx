@@ -146,7 +146,7 @@ const MakeAnnouncement = () => {
                         ) : (
                             <>
                                 <div className="font-semibold text-lg">{a.title}</div>
-                                <div className="mb-2">{a.message}</div>
+                                <div className="mb-2 whitespace-pre-wrap">{a.message}</div>
                                 {/* Only admin can see edit/delete buttons */}
                                 {userData?.role === 'admin' && (
                                     <>
