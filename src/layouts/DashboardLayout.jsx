@@ -9,6 +9,15 @@ const DashboardLayout = () => {
     const { role, roleLoading } = useUserRole();
     console.log(role);
 
+    // function to close sidebar on mobile after navigation
+    const handleNavClick = () => {
+        // only close on mobile devices (when drawer is not always open)
+        const drawerToggle = document.getElementById('my-drawer-2');
+        if (drawerToggle && window.innerWidth < 1024) {
+            drawerToggle.checked = false;
+        }
+    };
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -46,7 +55,7 @@ const DashboardLayout = () => {
                     {/* Sidebar content here */}
                     <Logo></Logo>
                     <li className='mt-3'>
-                        <NavLink to='/dashboard'>
+                        <NavLink to='/dashboard' onClick={handleNavClick}>
                             <FaHome className="inline-block mr-2" />Home
                         </NavLink>
                     </li>
@@ -55,25 +64,25 @@ const DashboardLayout = () => {
                     {!roleLoading && role !== 'member' && role !== 'admin' &&
                         <>
                             <li>
-                                <NavLink to='/dashboard/my-profile'>
+                                <NavLink to='/dashboard/my-profile' onClick={handleNavClick}>
                                     <FaUser className="inline-block mr-2" />My Profile
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/pending-bookings'>
+                                <NavLink to='/dashboard/pending-bookings' onClick={handleNavClick}>
                                     <FaClock className="inline-block mr-2" />Pending Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/approved-bookings'>
+                                <NavLink to='/dashboard/approved-bookings' onClick={handleNavClick}>
                                     <FaCheckCircle className="inline-block mr-2" />Approved Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/make-announcement'>
+                                <NavLink to='/dashboard/make-announcement' onClick={handleNavClick}>
                                     <FaBullhorn className="inline-block mr-2" />Announcement
                                 </NavLink>
                             </li>
@@ -84,37 +93,37 @@ const DashboardLayout = () => {
                     {!roleLoading && role === 'member' &&
                         <>
                             <li>
-                                <NavLink to='/dashboard/my-profile'>
+                                <NavLink to='/dashboard/my-profile' onClick={handleNavClick}>
                                     <FaUser className="inline-block mr-2" />My Profile
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/pending-bookings'>
+                                <NavLink to='/dashboard/pending-bookings' onClick={handleNavClick}>
                                     <FaClock className="inline-block mr-2" />Pending Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/approved-bookings'>
+                                <NavLink to='/dashboard/approved-bookings' onClick={handleNavClick}>
                                     <FaCheckCircle className="inline-block mr-2" />Approved Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/confirmed-bookings'>
+                                <NavLink to='/dashboard/confirmed-bookings' onClick={handleNavClick}>
                                     <FaClipboardCheck className="inline-block mr-2" />Confirmed Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/payment-history'>
+                                <NavLink to='/dashboard/payment-history' onClick={handleNavClick}>
                                     <FaMoneyBill className="inline-block mr-2" />Payment History
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/make-announcement'>
+                                <NavLink to='/dashboard/make-announcement' onClick={handleNavClick}>
                                     <FaBullhorn className="inline-block mr-2" />Announcement
                                 </NavLink>
                             </li>
@@ -126,49 +135,49 @@ const DashboardLayout = () => {
                     {!roleLoading && role === 'admin' &&
                         <>
                             <li>
-                                <NavLink to='/dashboard/admin-profile'>
+                                <NavLink to='/dashboard/admin-profile' onClick={handleNavClick}>
                                     <FaUserShield className="inline-block mr-2" />Admin Profile
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/pending-bookings'>
+                                <NavLink to='/dashboard/pending-bookings' onClick={handleNavClick}>
                                     <FaClock className="inline-block mr-2" />Manage Booking Approval
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/manage-members'>
+                                <NavLink to='/dashboard/manage-members' onClick={handleNavClick}>
                                     <FaCrown className="inline-block mr-2" />Manage Members
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/all-users'>
+                                <NavLink to='/dashboard/all-users' onClick={handleNavClick}>
                                     <FaUsers className="inline-block mr-2" />All Users
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/manage-courts'>
+                                <NavLink to='/dashboard/manage-courts' onClick={handleNavClick}>
                                     <FaThLarge className="inline-block mr-2" />Manage Courts
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/manage-bookings'>
+                                <NavLink to='/dashboard/manage-bookings' onClick={handleNavClick}>
                                     <FaCalendarAlt className="inline-block mr-2" />Manage Bookings
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/manage-coupons'>
+                                <NavLink to='/dashboard/manage-coupons' onClick={handleNavClick}>
                                     <FaTicketAlt className="inline-block mr-2" />Manage Coupons
                                 </NavLink>
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/make-announcement'>
+                                <NavLink to='/dashboard/make-announcement' onClick={handleNavClick}>
                                     <FaBullhorn className="inline-block mr-2" />Make Announcement
                                 </NavLink>
                             </li>
