@@ -22,6 +22,7 @@ import ManageBookings from "../pages/Dashboard/Manage Bookings/ManageBookings";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import MemberRoute from "../routes/MemberRoute";
+import Activities from "../pages/Activities/Activities";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: '/courts',
                 Component: Courts,
+            },
+            {
+                path: '/activities',
+                Component: Activities,
             },
             {
                 path: '/login',
