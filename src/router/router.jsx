@@ -23,6 +23,7 @@ import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import MemberRoute from "../routes/MemberRoute";
 import Activities from "../pages/Activities/Activities";
+import Events from "../pages/Events/Events";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
             {
                 path: '/activities',
                 Component: Activities,
+            },
+            {
+                path: '/events',
+                Component: Events,
             },
             {
                 path: '/login',
