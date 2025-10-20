@@ -24,6 +24,7 @@ import AdminRoute from "../routes/AdminRoute";
 import MemberRoute from "../routes/MemberRoute";
 import Activities from "../pages/Activities/Activities";
 import Events from "../pages/Events/Events";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: '/events',
                 Component: Events,
+            },
+            {
+                path: '/contact',
+                Component: Contact,
             },
             {
                 path: '/login',
