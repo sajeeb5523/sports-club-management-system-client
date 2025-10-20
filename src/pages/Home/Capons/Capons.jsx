@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 
 const coupons = [
@@ -9,7 +10,14 @@ const coupons = [
 
 const Capons = () => {
     return (
-        <div style={{ background: 'linear-gradient(90deg, #f9d423 0%, #ff4e50 100%)', padding: '2rem 0', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', margin: '2rem 0' }}>
+        <div style={{ background: 'linear-gradient(90deg, #f9d423 0%, #ff4e50 100%)', padding: '2rem 0', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', margin: '2rem 1rem'}}>
+            <div className="text-center mb-6">
+                <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>
+                    Coupons
+                </Typography>
+                <div className="w-20 h-1 bg-white mx-auto rounded"></div>
+            </div>
+
             <h2 style={{ textAlign: 'center', color: '#fff', fontWeight: 700, fontSize: '2rem', marginBottom: '1.5rem', letterSpacing: '2px' }}>🎁 Special Promotions & Discount Coupons 🎁</h2>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
                 {coupons.map((coupon) => (

@@ -3,6 +3,7 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaDirections, FaGlobe } f
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { Typography } from '@mui/material';
 
 // fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -69,11 +70,12 @@ const Location = () => {
             <div className="container mx-auto px-4">
                 {/* header section */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                    <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                         Our Location
-                    </h1>
-                                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Visit us at our headquarters in the heart of Dhaka. We're conveniently located 
+                    </Typography>
+                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-8">
+                        Visit us at our headquarters in the heart of Dhaka. We're conveniently located
                         in Uttara, easily accessible from all parts of the city.
                     </p>
                 </div>
@@ -230,14 +232,18 @@ const Location = () => {
 
                 {/* additional information */}
                 <div className="bg-white rounded-2xl shadow-xl p-8">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                        Getting Here
-                    </h2>
+
+                    <div className="text-center mb-12">
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                            Getting Here
+                        </Typography>
+                        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
+                    </div>
 
                     <div className="grid md:grid-cols-3 gap-6">
                         {/* public transport */}
-                        <div className="text-center p-6 bg-green-50 rounded-lg">
-                            <div className="bg-green-100 p-3 rounded-full inline-block mb-4">
+                        <div className="text-center p-6 bg-green-50 rounded-lg border border-gray-200">
+                            <div className="bg-green-100 p-3 rounded-full inline-block mb-4 ">
                                 <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
@@ -250,7 +256,7 @@ const Location = () => {
                         </div>
 
                         {/* parking */}
-                        <div className="text-center p-6 bg-blue-50 rounded-lg">
+                        <div className="text-center p-6 bg-blue-50 rounded-lg border border-gray-200">
                             <div className="bg-blue-100 p-3 rounded-full inline-block mb-4">
                                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-14 0h14" />
@@ -264,7 +270,7 @@ const Location = () => {
                         </div>
 
                         {/* accessibility */}
-                        <div className="text-center p-6 bg-purple-50 rounded-lg">
+                        <div className="text-center p-6 bg-purple-50 rounded-lg border border-gray-200">
                             <div className="bg-purple-100 p-3 rounded-full inline-block mb-4">
                                 <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
