@@ -72,9 +72,6 @@ const Events = () => {
                             <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
                             <p className="text-gray-600 text-sm mb-3">{event.date}</p>
                             <p className="text-gray-700 mb-4">{event.description}</p>
-                            <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
-                                Learn More
-                            </button>
                         </div>
                     </div>
                 ))}

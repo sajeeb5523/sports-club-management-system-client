@@ -232,9 +232,6 @@ const Activities = () => {
                                                     Level: {activity.difficulty}
                                                 </Typography>
                                             </Box>
-                                            <Button variant="contained" color="primary">
-                                                Learn More
-                                            </Button>
                                         </Box>
                                     </CardContent>
                                 </Card>
