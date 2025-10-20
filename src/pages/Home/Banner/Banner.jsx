@@ -72,7 +72,7 @@ const Banner = () => {
                             <h1 className="slide-title">{slide.title}</h1>
                             <h2 className="slide-subtitle">{slide.subtitle}</h2>
                             <p className="slide-description">{slide.description}</p>
-                            <button className="slide-button">Learn More</button>
+                            <button className="slide-button">See More</button>
                         </div>
                     </div>
                 ))}
