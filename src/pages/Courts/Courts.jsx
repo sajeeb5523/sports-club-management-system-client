@@ -11,6 +11,7 @@ import badminton1Image from '../../assets/badminton court-1.jpg';
 import badminton2Image from '../../assets/badminton court-2.jpg';
 import squash1Image from '../../assets/squash court-1.jpg';
 import squash2Image from '../../assets/squash court-2.jpg';
+import { Box, Container, Typography } from '@mui/material';
 
 const Courts = () => {
     const { user } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const Courts = () => {
     const getCourtImage = (courtName, courtType) => {
         const name = courtName.toLowerCase();
         const type = courtType.toLowerCase();
-        
+
         if (type.includes('tennis')) {
             return name.includes('1') ? tennis1Image : tennis2Image;
         } else if (type.includes('badminton')) {
@@ -61,7 +62,7 @@ const Courts = () => {
             navigate('/login');
             return;
         }
-        
+
         // open booking modal for logged in users
         setSelectedCourt(court);
         setIsModalOpen(true);
@@ -91,8 +92,8 @@ const Courts = () => {
                 <div className="text-center text-white">
                     <h2 className="text-3xl font-bold mb-4">⚠️ Error Loading Courts</h2>
                     <p className="text-lg mb-4">Unable to fetch court information. Please try again later.</p>
-                    <button 
-                        onClick={() => window.location.reload()} 
+                    <button
+                        onClick={() => window.location.reload()}
                         className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                     >
                         Retry
@@ -103,18 +104,30 @@ const Courts = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-indigo-400 to-purple-700">
+        <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-gray-50 to-blue-100">
             <div className="text-center mb-12 text-white">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Available Courts</h1>
-                <p className="text-lg md:text-xl opacity-90">Book your favorite court and enjoy your game!</p>
+                {/* <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Available Courts</h1> */}
+
+                <Container maxWidth="xl" sx={{}}>
+                    <Box sx={{ mb: -1, textAlign: 'center' }}>
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                            Available Courts
+                        </Typography>
+                        <Typography variant="h6" color="text.secondary" paragraph>
+                           Book your favorite court and enjoy your game!
+                        </Typography>
+                    </Box>
+                </Container>
+
+                {/* <p className="text-lg md:text-xl opacity-90">Book your favorite court and enjoy your game!</p> */}
                 {userData?.isMember && (
-                    <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500 text-white px-4 py-2 rounded-full">
+                    <div className="inline-flex items-center gap-2 mt-4 bg-yellow-500 text-white px-4 py-2 rounded-full">
                         <span className="text-lg">👑</span>
                         <span className="font-semibold">Member Discount Available!</span>
                     </div>
                 )}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 -mt-2">
                 {courts.map((court) => (
                     <div key={court.id} className="bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 relative hover:-translate-y-2 hover:shadow-3xl mx-2">
                         <div className="relative h-52 overflow-hidden">
@@ -139,7 +152,7 @@ const Courts = () => {
                                 <span className="text-2xl font-bold text-green-600">৳{court.price}</span>
                                 <span className="text-gray-500 text-sm">per session</span>
                             </div>
-                            <button 
+                            <button
                                 className="w-full py-3 bg-gradient-to-r from-indigo-400 to-purple-700 text-white rounded-lg text-lg font-semibold cursor-pointer transition-all duration-300 uppercase tracking-wider hover:from-indigo-500 hover:to-purple-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
                                 onClick={() => handleBookNow(court)}
                             >
@@ -150,7 +163,7 @@ const Courts = () => {
                 ))}
             </div>
             {isModalOpen && selectedCourt && (
-                <BookingModal 
+                <BookingModal
                     court={selectedCourt}
                     onClose={closeModal}
                 />
