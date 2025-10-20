@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Box, Container, Typography, TextField, Button } from '@mui/material';
 import React from 'react';
 
 const coupons = [
@@ -8,10 +8,21 @@ const coupons = [
     { code: 'VIP20', discount: 20 },
 ];
 
+
 const Capons = () => {
+
+    const [email, setEmail] = React.useState('');
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        // Handle subscription logic here
+        alert(`Thank you for subscribing with ${email}`);
+        setEmail('');
+    };
+
     return (
         <div className='pb-10'>
-            <div style={{ background: 'linear-gradient(90deg, #f9d423 0%, #ff4e50 100%)', padding: '2rem 0', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', margin: '0 1rem' }}>
+            <div style={{ background: 'linear-gradient(90deg, #f9d423 0%, #ff4e50 100%)', padding: '2rem 0', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', margin: '0 1rem 2rem 1rem' }}>
                 <div className="text-center mb-6">
                     <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>
                         Coupons
@@ -31,6 +42,65 @@ const Capons = () => {
                     ))}
                 </div>
             </div>
+
+            {/* 10. Newsletter */}
+            <Box sx={{ py: 4, bgcolor: 'primary.main', color: 'primary.contrastText', margin: '0 1rem', borderRadius: '16px' }}>
+                <Container maxWidth="md">
+                
+                    <div className="text-center mb-8">
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'second.main' }}>
+                            Stay Updated
+                        </Typography>
+                        <div className="w-20 h-1 bg-white mx-auto rounded"></div>
+                    </div>
+
+                    <Typography textAlign="center" sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}>
+                        Subscribe to our newsletter to receive updates on events, special offers, and more!
+                    </Typography>
+                    <Box
+                        component="form"
+                        onSubmit={handleSubscribe}
+                        sx={{
+                            display: 'flex',
+                            gap: 2,
+                            maxWidth: 600,
+                            mx: 'auto',
+                            '& .MuiOutlinedInput-root': {
+                                backgroundColor: 'background.paper',
+                            },
+                        }}
+                    >
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            placeholder="Your email address"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            type="email"
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: 'rgba(255, 255, 255, 0.3)',
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: 'rgba(255, 255, 255, 0.5)',
+                                    },
+                                },
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            size="large"
+                            sx={{ whiteSpace: 'nowrap' }}
+                        >
+                            Subscribe
+                        </Button>
+                    </Box>
+                </Container>
+            </Box>
         </div>
     );
 };

@@ -26,8 +26,7 @@ const AboutClub = () => {
 
                 {/* history section */}
                 <section className="mb-20 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                    <div className="text-center mb-12">
-                        {/* <h2 className="text-4xl font-bold text-gray-800 mb-4">Our History</h2> */}
+                    <div className="text-center mb-10">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                             Our History
                         </Typography>
@@ -88,7 +87,14 @@ const AboutClub = () => {
 
                 {/* mission & vision section */}
                 <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="text-center mb-12">
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                            Mission & Vision
+                        </Typography>
+                        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
+                    </div>
                     <div className="grid md:grid-cols-2 gap-10 mt-8">
+
                         <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white p-10 rounded-3xl text-center relative overflow-hidden group">
                             <div className="absolute inset-0 bg-white opacity-10 rounded-full transform rotate-45 scale-0 group-hover:scale-110 transition-transform duration-300"></div>
                             <div className="text-5xl mb-5">🎯</div>
@@ -157,7 +163,7 @@ const AboutClub = () => {
                 {/* facilities section */}
                 <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                     <div className="text-center mb-12">
-                       
+
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                             Our Facilities
                         </Typography>
@@ -247,7 +253,7 @@ const AboutClub = () => {
                 {/* contact section */}
                 <section className="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                     <div className="text-center mb-8">
-                       
+
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'second.main' }}>
                             Get In Touch
                         </Typography>
@@ -256,7 +262,7 @@ const AboutClub = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 mt-12">
-                        
+
                         {/* contact info cards */}
                         <div className="space-y-6">
                             <div className="flex items-center bg-white text-black bg-opacity-15 p-6 rounded-2xl backdrop-blur-sm border border-white border-opacity-20 hover:bg-opacity-25 transition-all duration-300 group">
