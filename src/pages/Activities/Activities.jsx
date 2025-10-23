@@ -106,140 +106,141 @@ const Activities = () => {
     });
 
     return (
-
         <div className="bg-gradient-to-br from-gray-50 to-blue-100">
-            <Container maxWidth="xl" sx={{ py: 4 }}>
-                <Box sx={{ mb: 4, textAlign: 'center' }}>
-                    <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                        Our Activities
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary" paragraph>
-                        Discover and join our wide range of sports and fitness activities
-                    </Typography>
-                </Box>
-
-                <Box sx={{
-                    mb: 4,
-                    display: 'grid',
-                    gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' },
-                    gap: 2,
-                    maxWidth: '1000px',
-                    mx: 'auto',
-                    px: 2
-                }}>
-                    <Box sx={{ width: '100%' }}>
-                        <TextField
-                            select
-                            fullWidth
-                            label="Category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            variant="outlined"
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    backgroundColor: 'white',
-                                    '&:hover fieldset': {
-                                        borderColor: 'primary.main',
-                                    },
-                                }
-                            }}
-                        >
-                            {categories.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Box>
-
-                    <Box sx={{ width: '100%' }}>
-                        <TextField
-                            select
-                            fullWidth
-                            label="Difficulty"
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
-                            variant="outlined"
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    backgroundColor: 'white',
-                                    '&:hover fieldset': {
-                                        borderColor: 'primary.main',
-                                    },
-                                }
-                            }}
-                        >
-                            {difficultyLevels.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Box>
-
-                    <Box sx={{ width: '100%' }}>
-                        <TextField
-                            fullWidth
-                            label="Search activities..."
-                            variant="outlined"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    backgroundColor: 'white',
-                                    '&:hover fieldset': {
-                                        borderColor: 'primary.main',
-                                    },
-                                }
-                            }}
-                        />
-                    </Box>
-                </Box>
-
-                {filteredActivities.length === 0 ? (
-                    <Box sx={{ textAlign: 'center', py: 8 }}>
-                        <Typography variant="h6" color="text.secondary">
-                            No activities match your filters. Try adjusting your search criteria.
+            <div className='max-w-7xl mx-auto'>
+                <Container maxWidth="xl" sx={{ py: 4 }}>
+                    <Box sx={{ mb: 4, textAlign: 'center' }}>
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                            Our Activities
+                        </Typography>
+                        <Typography variant="h6" color="text.secondary" paragraph>
+                            Discover and join our wide range of sports and fitness activities
                         </Typography>
                     </Box>
-                ) : (
-                    <Grid container spacing={4}>
-                        {filteredActivities.map((activity) => (
-                            <Grid item key={activity.id} xs={12} sm={6} md={4} lg={4}>
-                                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-8px)' } }}>
-                                    <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={activity.image}
-                                        alt={activity.title}
-                                    />
-                                    <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                                            {getCategoryIcon(activity.category)}
-                                            <Typography variant="h5" component="h2" sx={{ ml: 1 }}>
-                                                {activity.title}
-                                            </Typography>
-                                        </Box>
-                                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, flexGrow: 1 }}>
-                                            {activity.description}
-                                        </Typography>
-                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 'auto' }}>
-                                            <Box>
-                                                <Typography variant="caption" color="text.secondary" display="block">
-                                                    Duration: {activity.duration}
-                                                </Typography>
-                                                <Typography variant="caption" color="text.secondary" display="block">
-                                                    Level: {activity.difficulty}
+
+                    <Box sx={{
+                        mb: 4,
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' },
+                        gap: 2,
+                        maxWidth: '1000px',
+                        mx: 'auto',
+                        px: 2
+                    }}>
+                        <Box sx={{ width: '100%' }}>
+                            <TextField
+                                select
+                                fullWidth
+                                label="Category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                variant="outlined"
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        backgroundColor: 'white',
+                                        '&:hover fieldset': {
+                                            borderColor: 'primary.main',
+                                        },
+                                    }
+                                }}
+                            >
+                                {categories.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+
+                        <Box sx={{ width: '100%' }}>
+                            <TextField
+                                select
+                                fullWidth
+                                label="Difficulty"
+                                value={difficulty}
+                                onChange={(e) => setDifficulty(e.target.value)}
+                                variant="outlined"
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        backgroundColor: 'white',
+                                        '&:hover fieldset': {
+                                            borderColor: 'primary.main',
+                                        },
+                                    }
+                                }}
+                            >
+                                {difficultyLevels.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+
+                        <Box sx={{ width: '100%' }}>
+                            <TextField
+                                fullWidth
+                                label="Search activities..."
+                                variant="outlined"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        backgroundColor: 'white',
+                                        '&:hover fieldset': {
+                                            borderColor: 'primary.main',
+                                        },
+                                    }
+                                }}
+                            />
+                        </Box>
+                    </Box>
+
+                    {filteredActivities.length === 0 ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}>
+                            <Typography variant="h6" color="text.secondary">
+                                No activities match your filters. Try adjusting your search criteria.
+                            </Typography>
+                        </Box>
+                    ) : (
+                        <Grid container spacing={4}>
+                            {filteredActivities.map((activity) => (
+                                <Grid item key={activity.id} xs={12} sm={6} md={4} lg={4}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-8px)' } }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={activity.image}
+                                            alt={activity.title}
+                                        />
+                                        <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                                                {getCategoryIcon(activity.category)}
+                                                <Typography variant="h5" component="h2" sx={{ ml: 1 }}>
+                                                    {activity.title}
                                                 </Typography>
                                             </Box>
-                                        </Box>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                )}
-            </Container>
+                                            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, flexGrow: 1 }}>
+                                                {activity.description}
+                                            </Typography>
+                                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 'auto' }}>
+                                                <Box>
+                                                    <Typography variant="caption" color="text.secondary" display="block">
+                                                        Duration: {activity.duration}
+                                                    </Typography>
+                                                    <Typography variant="caption" color="text.secondary" display="block">
+                                                        Level: {activity.difficulty}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )}
+                </Container>
+            </div>
         </div>
     );
 };

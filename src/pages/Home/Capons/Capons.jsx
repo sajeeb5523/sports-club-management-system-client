@@ -21,7 +21,7 @@ const Capons = () => {
     };
 
     return (
-        <div className='pb-10'>
+        <div className='pb-10 max-w-7xl mx-auto'>
             <div style={{ background: 'linear-gradient(90deg, #f9d423 0%, #ff4e50 100%)', padding: '2rem 0', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', margin: '0 1rem 2rem 1rem' }}>
                 <div className="text-center mb-6">
                     <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>

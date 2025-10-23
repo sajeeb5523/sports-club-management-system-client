@@ -48,7 +48,7 @@ const Events = () => {
     ];
 
     return (
-        <div className="container mx-auto px-6 bg-gradient-to-br from-gray-50 to-blue-100">
+        <div className="px-6 bg-gradient-to-br from-gray-50 to-blue-100">
             <Container maxWidth="xl" sx={{ py: 4 }}>
                 <Box sx={{ mb: -1, textAlign: 'center' }}>
                     <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -60,7 +60,7 @@ const Events = () => {
                 </Box>
             </Container>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-2 px-6 max-w-7xl mx-auto">
                 {events.map(event => (
                     <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 mb-8">
                         <img

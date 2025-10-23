@@ -105,7 +105,7 @@ const Courts = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto p-8 min-h-screen bg-gradient-to-br from-gray-50 to-blue-100">
+        <div className="p-8 min-h-screen bg-gradient-to-br from-gray-50 to-blue-100">
             <div className="text-center mb-12 text-white">
                 <Container maxWidth="xl">
                     <Box sx={{ mb: -1, textAlign: 'center' }}>
@@ -145,7 +145,7 @@ const Courts = () => {
                 </ButtonGroup>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 -mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 -mt-2 px-4 max-w-7xl mx-auto">
                 {[...courts]
                     .sort((a, b) => {
                         if (sortOrder === 'asc') {

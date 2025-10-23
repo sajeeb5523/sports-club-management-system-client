@@ -22,7 +22,7 @@ const AboutClub = () => {
             </div>
 
             {/* main content */}
-            <div className="max-w-7xl mx-auto px-5 py-15">
+            <div className="max-w-7xl mx-auto px-6 py-15">
 
                 {/* history section */}
                 <section className="mb-20 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
