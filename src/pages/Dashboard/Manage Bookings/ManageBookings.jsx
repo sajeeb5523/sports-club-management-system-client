@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import { GiConfirmed } from "react-icons/gi";
+
 
 const ManageBookings = () => {
     const axiosSecure = useAxiosSecure();
@@ -52,9 +54,9 @@ const ManageBookings = () => {
     return (
         <div className="max-w-6xl mx-auto p-6">
             <div className="mb-6">
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">
-                    Manage Confirmed Bookings
-                </h1>
+                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                    <GiConfirmed className="inline-block" /> Manage Confirmed Bookings
+                </h2>
                 <p className="text-gray-600 mb-4">
                     All confirmed bookings with completed payments ({bookings.length} total)
                 </p>

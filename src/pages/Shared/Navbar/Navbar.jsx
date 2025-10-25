@@ -50,20 +50,94 @@ const Navbar = () => {
     // Navigation items for non-logged in users
     const guestNavItems = (
         <>
-            <li><NavLink to='/' className="hover:text-black transition-colors">Home</NavLink></li>
-            <li><NavLink to='/courts' className="hover:text-black transition-colors">Courts</NavLink></li>
-            <li><NavLink to='/about-us' className="hover:text-black transition-colors">About</NavLink></li>
+            <li>
+                <NavLink
+                    to='/'
+                    end
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Home
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/courts'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Courts
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/about-us'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    About
+                </NavLink>
+            </li>
         </>
     );
 
     // Navigation items for logged in users
     const userNavItems = (
         <>
-            <li><NavLink to='/' className="hover:text-black transition-colors">Home</NavLink></li>
-            <li><NavLink to='/courts' className="hover:text-black transition-colors">Courts</NavLink></li>
-            <li><NavLink to='/activities' className="hover:text-black transition-colors">Activities</NavLink></li>
-            <li><NavLink to='/events' className="hover:text-black transition-colors">Events</NavLink></li>
-            <li><NavLink to='/contact' className="hover:text-black transition-colors">Contact</NavLink></li>
+            <li>
+                <NavLink
+                    to='/'
+                    end
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Home
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/courts'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Courts
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/activities'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Activities
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/events'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Events
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to='/contact'
+                    className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                    }
+                >
+                    Contact
+                </NavLink>
+            </li>
         </>
     );
 
@@ -78,7 +152,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-white text-gray-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg">
+                            className="menu menu-sm dropdown-content bg-white text-gray-800 rounded-box z-1 mt-3 w-28 px-5 p-2 shadow-lg">
                             {navItems}
                         </ul>
                     </div>

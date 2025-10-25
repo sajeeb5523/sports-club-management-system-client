@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import { GiConfirmed } from "react-icons/gi";
 
 const ConfirmedBookings = () => {
     const axiosSecure = useAxiosSecure();
@@ -33,8 +34,10 @@ const ConfirmedBookings = () => {
     );
 
     return (
-        <div className="max-w-4xl p-4">
-            <h2 className="text-2xl font-bold mb-5">Paid & Confirmed Bookings: {bookings.length}</h2>
+        <div className="max-w-4xl p-6">
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                <GiConfirmed  className="inline-block" /> Paid & Confirmed Bookings: {bookings.length}
+            </h2>
             <div className="space-y-6">
                 {bookings.map(booking => (
                     <div key={booking._id} className="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

@@ -5,6 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import StripeCheckout from './StripeCheckout';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 
@@ -54,7 +55,10 @@ const ApprovedBookings = () => {
 
     return (
         <div className="max-w-4xl p-4">
-            <h2 className="text-2xl font-bold mb-5">Approved Bookings (Payment Pending): {bookings.length}</h2>
+            {/* <h2 className="text-2xl font-bold mb-5"></h2> */}
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                <FaCheckCircle className="inline-block" /> Approved Bookings (Payment Pending): {bookings.length}
+            </h2>
             <div className="space-y-6">
                 {bookings.map(booking => (
                     <div key={booking._id} className="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

@@ -35,7 +35,7 @@ const AdminProfile = () => {
     }
 
     return (
-        <div className="max-w-5xl w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-8">
+        <div className=" rounded-xl overflow-hidden p-6 min-h-screen">
             {/* Profile Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
                 <div className="flex flex-col md:flex-row items-center gap-6">
@@ -55,6 +55,7 @@ const AdminProfile = () => {
                             <FaUserShield className="text-xl" />
                         </div>
                     </div>
+                    
                     <div className="text-center md:text-left">
                         <h1 className="text-3xl font-bold flex items-center justify-center md:justify-start gap-2">
                             {userData.displayName || userData.name || user?.displayName || 'Admin'}
@@ -75,7 +76,7 @@ const AdminProfile = () => {
             </div>
 
             {/* Profile Content */}
-            <div className="p-6">
+            <div className="p-6 px-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Personal Information */}
                     <div className="bg-gray-50 p-6 rounded-lg shadow">

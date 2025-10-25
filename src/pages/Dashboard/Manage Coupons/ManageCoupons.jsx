@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { FaTicketAlt } from 'react-icons/fa';
 
 const ManageCoupons = () => {
     const [coupons, setCoupons] = useState([]);
@@ -47,7 +48,7 @@ const ManageCoupons = () => {
                 discount: 15,
                 description: 'Summer special discount',
                 expiryDate: '2025-08-31',
-                isActive: true,               
+                isActive: true,
             },
             {
                 _id: '4',
@@ -55,7 +56,7 @@ const ManageCoupons = () => {
                 discount: 20,
                 description: 'Only for those who will book 5 courts.',
                 expiryDate: '2025-01-31',
-                isActive: true,             
+                isActive: true,
             }
         ];
     };
@@ -219,8 +220,10 @@ const ManageCoupons = () => {
 
     return (
         <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-800">Manage Coupons</h1>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-3xl font-bold mb-4 flex items-center gap-2 text-green-700">
+                    <FaTicketAlt className="inline-block" /> Manage Coupons
+                </h2>
                 <button
                     onClick={handleAddCoupon}
                     className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
@@ -266,8 +269,8 @@ const ManageCoupons = () => {
                                 <button
                                     onClick={() => toggleCouponStatus(coupon)}
                                     className={`flex-1 py-2 px-3 rounded text-sm transition-colors ${coupon.isActive
-                                            ? 'bg-orange-500 hover:bg-orange-600 text-white'
-                                            : 'bg-green-500 hover:bg-green-600 text-white'
+                                        ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                                        : 'bg-green-500 hover:bg-green-600 text-white'
                                         }`}
                                 >
                                     {coupon.isActive ? 'Deactivate' : 'Activate'}

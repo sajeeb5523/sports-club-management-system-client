@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-
 import useUserData from '../../../hooks/useUserData';
+import { FaBullhorn } from 'react-icons/fa';
 
 const MakeAnnouncement = () => {
     const axiosSecure = useAxiosSecure();
@@ -101,8 +101,11 @@ const MakeAnnouncement = () => {
     if (isError) return <div>Error: {error?.message || 'Failed to load announcements.'}</div>;
 
     return (
-        <div className="max-w-4xl mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Make Announcement</h2>
+        <div className=" p-6">
+            {/* <h2 className="text-2xl font-bold mb-4"></h2> */}
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                <FaBullhorn className="inline-block" /> Make Announcement
+            </h2>
             {/* Only show form if admin */}
             {userData?.role === 'admin' && (
                 <form onSubmit={handleAdd} className="mb-6 bg-gray-100 p-4 rounded">

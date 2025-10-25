@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import MemberInfo from '../MemberInfo/MemberInfo';
 import { FaCalendarAlt, FaCheckCircle, FaClock, FaMoneyBill } from 'react-icons/fa';
+import { MdDashboard } from 'react-icons/md';
 
 const DashboardHome = () => {
     const axiosSecure = useAxiosSecure();
@@ -16,7 +17,7 @@ const DashboardHome = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`booking?email=${user.email}`);
             const bookings = res.data;
-            
+
             return {
                 totalBookings: bookings.length,
                 pendingBookings: bookings.filter(b => b.status === 'pending').length,
@@ -45,7 +46,9 @@ const DashboardHome = () => {
     return (
         <div className="p-6">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+                <h2 className="text-3xl font-bold flex items-center gap-2 text-green-700">
+                    <MdDashboard className="inline-block" /> Dashboard
+                </h2>
                 <p className="text-gray-600 mt-2">Welcome back, {user?.displayName || 'User'}!</p>
             </div>
 

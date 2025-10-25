@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import { MdHistory } from "react-icons/md";
 
 const PaymentHistory = () => {
     const axiosSecure = useAxiosSecure();
@@ -77,23 +78,23 @@ const PaymentHistory = () => {
                             {new Date(payment.date).toLocaleDateString()}
                         </div>
                     </div>
-                    
+
                     <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                             <span className="text-gray-600">Date & Time:</span>
                             <span className="text-gray-900">{new Date(payment.date).toLocaleString()}</span>
                         </div>
-                        
+
                         <div className="flex justify-between">
                             <span className="text-gray-600">Discount:</span>
                             <span className="text-gray-900">{payment.discount || 0}</span>
                         </div>
-                        
+
                         <div className="flex justify-between">
                             <span className="text-gray-600">Coupon:</span>
                             <span className="text-gray-900">{payment.coupon || '-'}</span>
                         </div>
-                        
+
                         <div className="pt-2 border-t border-gray-100">
                             <div className="flex justify-between mb-1">
                                 <span className="text-gray-600">Payment ID:</span>
@@ -102,7 +103,7 @@ const PaymentHistory = () => {
                                 {payment.paymentIntentId}
                             </div>
                         </div>
-                        
+
                         <div className="flex justify-between">
                             <span className="text-gray-600">Booking ID:</span>
                             <span className="text-gray-900">{payment.bookingId}</span>
@@ -114,10 +115,12 @@ const PaymentHistory = () => {
     );
 
     return (
-        <div className="p-4">
+        <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Payment History</h2>
-                
+                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                    <MdHistory className="inline-block" /> Payment History
+                </h2>
+
                 {/* Layout Toggle Button */}
                 <div className="flex items-center space-x-2">
                     <span className="text-sm text-gray-600">View:</span>
@@ -143,7 +146,7 @@ const PaymentHistory = () => {
                     </button>
                 </div>
             </div>
-            
+
             {/* Render based on view mode */}
             {viewMode === 'table' ? renderTableView() : renderCardView()}
         </div>

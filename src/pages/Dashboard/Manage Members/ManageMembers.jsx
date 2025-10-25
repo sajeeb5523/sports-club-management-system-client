@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { FaTrash, FaSearch, FaUser } from 'react-icons/fa';
+import { FaTrash, FaSearch, FaCrown } from 'react-icons/fa';
 
 const ManageMembers = () => {
     const axiosSecure = useAxiosSecure();
@@ -81,9 +81,9 @@ const ManageMembers = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto mt-10 bg-white rounded shadow p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-green-700">
-                <FaUser className="inline-block" /> Manage Members
+        <div className="p-6">
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                <FaCrown className="inline-block" /> Manage Members
             </h2>
             <div className="mb-4 flex items-center gap-2">
                 <div className="relative flex-1">

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { FaSearch, FaUser, FaCrown, FaUserShield, FaTrash } from 'react-icons/fa';
+import { FaSearch, FaUser, FaCrown, FaUserShield, FaTrash, FaUsers } from 'react-icons/fa';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -148,13 +148,16 @@ const AllUsers = () => {
     return (
         <div className="p-6">
             <div className="mb-6">
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">All Users</h1>
+                {/* <h1 className="text-3xl font-bold text-gray-800 mb-2">All Users</h1> */}
+                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                    <FaUsers className="inline-block" /> All Users
+                </h2>
                 <p className="text-gray-600">Manage all registered users and their roles</p>
             </div>
 
             {/* search Bar */}
             <div className="mb-6">
-                <div className="relative max-w-md">
+                <div className="relative w-full">
                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
@@ -219,9 +222,9 @@ const AllUsers = () => {
                                             <img src={user.photoURL} alt="avatar" className="w-10 h-10 rounded-full object-cover" />
                                         ) : (
                                             <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">
-                                                {user.displayName ? user.displayName.charAt(0).toUpperCase() : 
-                                                 user.name ? user.name.charAt(0).toUpperCase() : 
-                                                 user.email.charAt(0).toUpperCase()}
+                                                {user.displayName ? user.displayName.charAt(0).toUpperCase() :
+                                                    user.name ? user.name.charAt(0).toUpperCase() :
+                                                        user.email.charAt(0).toUpperCase()}
                                             </div>
                                         )}
                                         <div>

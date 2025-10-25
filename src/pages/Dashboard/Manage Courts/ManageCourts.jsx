@@ -8,10 +8,11 @@ import badminton1Image from '../../../assets/badminton court-1.jpg';
 import badminton2Image from '../../../assets/badminton court-2.jpg';
 import squash1Image from '../../../assets/squash court-1.jpg';
 import squash2Image from '../../../assets/squash court-2.jpg';
+import { MdManageSearch } from "react-icons/md";
 
 const ManageCourts = () => {
     const axiosSecure = useAxiosSecure();
-    
+
     // fetch courts from API with auto-refresh
     const { data: courts = [], isLoading, refetch, error } = useQuery({
         queryKey: ['courts'],
@@ -231,7 +232,7 @@ const ManageCourts = () => {
                 await axiosSecure.post('/courts', courtData);
                 toast.success('Court added successfully!');
             }
-            
+
             // refresh the courts list
             refetch();
             closeModal();
@@ -261,12 +262,14 @@ const ManageCourts = () => {
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-800">Manage Courts</h1>
+                    <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-green-700">
+                        <MdManageSearch className="inline-block" /> Manage Courts
+                    </h2>
                     {isLoading && <p className="text-sm text-gray-500 mt-1">Loading courts...</p>}
                     {error && <p className="text-sm text-red-500 mt-1">Failed to load courts</p>}
                 </div>
                 <div className="flex gap-3">
-                    
+
                     <button
                         onClick={openAddModal}
                         className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
@@ -280,8 +283,8 @@ const ManageCourts = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {courts.map((court) => (
                     <div key={court._id || court.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img 
-                            src={court.image || defaultImages[court.type]} 
+                        <img
+                            src={court.image || defaultImages[court.type]}
                             alt={court.name}
                             className="w-full h-48 object-cover"
                             onError={(e) => {
@@ -292,7 +295,7 @@ const ManageCourts = () => {
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">{court.name}</h3>
                             <p className="text-gray-600 mb-2">Type: {court.type}</p>
                             <p className="text-lg font-bold text-green-600 mb-3">৳{court.price}/hour</p>
-                            
+
                             <div className="mb-4">
                                 <h4 className="font-medium text-gray-700 mb-2">Available Slots:</h4>
                                 <div className="flex flex-wrap gap-1">
