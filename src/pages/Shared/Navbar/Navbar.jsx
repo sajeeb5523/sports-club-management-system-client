@@ -52,7 +52,7 @@ const Navbar = () => {
         <>
             <li><NavLink to='/' className="hover:text-black transition-colors">Home</NavLink></li>
             <li><NavLink to='/courts' className="hover:text-black transition-colors">Courts</NavLink></li>
-            <li><NavLink to='/about' className="hover:text-black transition-colors">About</NavLink></li>
+            <li><NavLink to='/about-us' className="hover:text-black transition-colors">About</NavLink></li>
         </>
     );
 

@@ -6,7 +6,7 @@ import Logo from '../Logo/Logo';
 
 const Footer = () => {
   return (
-    <footer className="footer justify-between px-29 mx-auto sm:footer-horizontal bg-neutral text-neutral-content p-10">
+    <footer className="footer justify-between px-10 md:px-29 mx-auto sm:footer-horizontal bg-neutral text-neutral-content p-10">
       <aside>
         <Logo></Logo>
         <p>

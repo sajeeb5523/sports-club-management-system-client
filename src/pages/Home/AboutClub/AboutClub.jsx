@@ -223,7 +223,7 @@ const AboutClub = () => {
                         <div className="bg-white p-8 rounded-3xl text-center shadow-lg transition-all duration-300 hover:-translate-y-2 border border-gray-200">
                             <img src="https://i.ibb.co/d02r6QrK/smith.jpg" alt="" className='mb-5 rounded-2xl' />
                             <h4 className="text-xl font-semibold text-gray-800 mb-2">John Smith</h4>
-                            <p className="text-blue-500 font-semibold mb-4">Club Director</p>
+                            <p className="text-blue-500 font-semibold mb-4">Founder & CEO</p>
                             <p className="text-gray-600 text-sm leading-relaxed">20+ years of experience in sports management</p>
                         </div>
 

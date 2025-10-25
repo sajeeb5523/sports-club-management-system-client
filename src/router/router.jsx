@@ -25,6 +25,7 @@ import MemberRoute from "../routes/MemberRoute";
 import Activities from "../pages/Activities/Activities";
 import Events from "../pages/Events/Events";
 import Contact from "../pages/Contact/Contact";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             {
                 path: '/courts',
                 Component: Courts,
+            },
+            {
+                path: '/about-us',
+                Component: AboutUs,
             },
             {
                 path: '/activities',
