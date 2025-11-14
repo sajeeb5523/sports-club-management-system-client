@@ -1,31 +1,33 @@
 import { Typography } from '@mui/material';
 import React from 'react';
+import Location from '../Location/Location';
+import Capons from '../Capons/Capons';
 
 const AboutClub = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 my-5">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100">
 
             {/* hero section */}
-            <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-8 px-5 text-center relative overflow-hidden">
+            {/* <div className="text-black py-8 px-5 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-30"></div>
 
-                <div className="relative z-10 max-w-4xl mx-auto">
-                    <div className="text-center mb-8">
+                <div className="relative z-10 max-w-5xl mx-auto">
+                    <div className="text-center">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'second.main' }}>
                             About Our Club
                         </Typography>
-                        <div className="w-20 h-1 bg-white mx-auto rounded"></div>
+                         <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
                     </div>
 
                     <p className="text-xl md:text-2xl opacity-90 leading-relaxed">Building champions, fostering community, and promoting excellence in sports since 2020</p>
                 </div>
-            </div>
+            </div> */}
 
             {/* main content */}
-            <div className="max-w-7xl mx-auto px-6 py-15">
+            <div className="max-w-7xl mx-auto px-6 py-15 pb-0.5">
 
                 {/* history section */}
-                <section className="mb-20 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <section className="mb-15">
                     <div className="text-center mb-10">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                             Our History
@@ -86,7 +88,7 @@ const AboutClub = () => {
                 </section>
 
                 {/* mission & vision section */}
-                <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <section className="mb-15">
                     <div className="text-center mb-12">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                             Mission & Vision
@@ -112,7 +114,7 @@ const AboutClub = () => {
                 </section>
 
                 {/* values section */}
-                <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <section className="mb-15">
                     <div className="text-center mb-12">
 
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -161,7 +163,7 @@ const AboutClub = () => {
                 </section>
 
                 {/* facilities section */}
-                <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <section className="mb-15">
                     <div className="text-center mb-12">
 
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -210,7 +212,7 @@ const AboutClub = () => {
                 </section>
 
                 {/* team section */}
-                <section className="mb-15 bg-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <section className="mb-15">
 
                     <div className="text-center mb-12">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -251,19 +253,17 @@ const AboutClub = () => {
                 </section>
 
                 {/* contact section */}
-                <section className="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-3xl p-12 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                {/* <section className=" text-black">
                     <div className="text-center mb-8">
 
-                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'second.main' }}>
+                        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                             Get In Touch
                         </Typography>
-                        <div className="w-20 h-1 bg-white mx-auto rounded"></div>
+                        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
                         <p className="text-xl mt-6 opacity-90">We'd love to hear from you. Contact us for any inquiries.</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 mt-12">
-
-                        {/* contact info cards */}
+                    <div className="grid md:grid-cols-2 gap-8">
                         <div className="space-y-6">
                             <div className="flex items-center bg-white text-black bg-opacity-15 p-6 rounded-2xl backdrop-blur-sm border border-white border-opacity-20 hover:bg-opacity-25 transition-all duration-300 group">
                                 <div className="text-4xl mr-6 min-w-16 group-hover:scale-110 transition-transform duration-300">📍</div>
@@ -300,7 +300,12 @@ const AboutClub = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
+
+
+                <Location></Location>
+                <Capons></Capons>
+
             </div>
         </div>
     );

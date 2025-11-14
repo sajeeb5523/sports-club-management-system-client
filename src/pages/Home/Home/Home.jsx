@@ -10,10 +10,6 @@ const Home = () => {
         <div className="min-h-screen">
             <Banner></Banner>
             <AboutClub></AboutClub>
-            <div className='bg-gradient-to-br from-gray-50 to-blue-100'>
-                <Location></Location>
-                <Capons></Capons>
-            </div>
         </div >
     );
 };

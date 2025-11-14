@@ -147,7 +147,7 @@ const Navbar = () => {
             <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white hover:bg-white/10">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-black hover:bg-white/10">
                             <MdMenu className="text-2xl" />
                         </div>
                         <ul

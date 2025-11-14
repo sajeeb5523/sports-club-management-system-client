@@ -66,7 +66,7 @@ const Location = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+        <div className="min-h-screen mb-15">
             <div className="container mx-auto px-4">
                 {/* header section */}
                 <div className="text-center mb-12">
@@ -74,13 +74,13 @@ const Location = () => {
                         Our Location
                     </Typography>
                     <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded"></div>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-8">
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-5">
                         Visit us at our headquarters in the heart of Dhaka. We're conveniently located
                         in Uttara, easily accessible from all parts of the city.
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8 mb-12">
+                <div className="grid lg:grid-cols-2 gap-8 mb-15">
                     {/* address details card */}
                     <div className="bg-white rounded-2xl shadow-xl p-8">
                         <div className="flex items-center mb-6">
@@ -231,7 +231,7 @@ const Location = () => {
                 </div>
 
                 {/* additional information */}
-                <div className="bg-white rounded-2xl shadow-xl p-8">
+                <div>
 
                     <div className="text-center mb-12">
                         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
