@@ -55,7 +55,7 @@ const Navbar = () => {
                     to='/'
                     end
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Home
@@ -65,7 +65,7 @@ const Navbar = () => {
                 <NavLink
                     to='/courts'
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Courts
@@ -74,7 +74,7 @@ const Navbar = () => {
             <li>
                 <NavLink
                     to='/about-us'
-                     className={({ isActive }) =>
+                    className={({ isActive }) =>
                         `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
@@ -92,7 +92,7 @@ const Navbar = () => {
                     to='/'
                     end
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Home
@@ -102,7 +102,7 @@ const Navbar = () => {
                 <NavLink
                     to='/courts'
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Courts
@@ -112,7 +112,7 @@ const Navbar = () => {
                 <NavLink
                     to='/activities'
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Activities
@@ -122,7 +122,7 @@ const Navbar = () => {
                 <NavLink
                     to='/events'
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Events
@@ -132,7 +132,7 @@ const Navbar = () => {
                 <NavLink
                     to='/contact'
                     className={({ isActive }) =>
-                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Contact
@@ -245,7 +245,7 @@ const Navbar = () => {
                             )}
                         </div>
                     ) : (
-                        <NavLink to='/login' className='btn btn-outline btn-primary text-white hover:bg-white hover:text-primary sm:w-auto px-6 py-2 rounded-lg border-2 border-white hover:border-white'>Login</NavLink>
+                        <NavLink to='/login' className='btn text-black sm:w-auto px-6 py-2 rounded-lg border-2 border-amber-600'>Login</NavLink>  
                     )}
                 </div>
             </div>
