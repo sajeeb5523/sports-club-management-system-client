@@ -48,14 +48,14 @@ const Navbar = () => {
     }, [isDropdownOpen]);
 
     // Navigation items for non-logged in users
-    const guestNavItems = (
+    const userNavItems = (
         <>
             <li>
                 <NavLink
                     to='/'
                     end
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Home
@@ -65,7 +65,7 @@ const Navbar = () => {
                 <NavLink
                     to='/courts'
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Courts
@@ -74,8 +74,8 @@ const Navbar = () => {
             <li>
                 <NavLink
                     to='/about-us'
-                    className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                     className={({ isActive }) =>
+                        `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     About
@@ -85,14 +85,14 @@ const Navbar = () => {
     );
 
     // Navigation items for logged in users
-    const userNavItems = (
+    const memberNavItems = (
         <>
             <li>
                 <NavLink
                     to='/'
                     end
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Home
@@ -102,7 +102,7 @@ const Navbar = () => {
                 <NavLink
                     to='/courts'
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Courts
@@ -112,7 +112,7 @@ const Navbar = () => {
                 <NavLink
                     to='/activities'
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Activities
@@ -122,7 +122,7 @@ const Navbar = () => {
                 <NavLink
                     to='/events'
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Events
@@ -132,7 +132,7 @@ const Navbar = () => {
                 <NavLink
                     to='/contact'
                     className={({ isActive }) =>
-                        `transition-colors ${isActive ? 'md:text-white font-semibold border-b-2 md:border-white' : 'md:text-white/80'}`
+                       `transition-colors ${isActive ? 'text-red-500' : 'text-black'}`
                     }
                 >
                     Contact
@@ -141,9 +141,9 @@ const Navbar = () => {
         </>
     );
 
-    const navItems = user ? userNavItems : guestNavItems;
+    const navItems = user ? memberNavItems : userNavItems;
     return (
-        <div className="w-full bg-gradient-to-r from-primary to-secondary text-white sticky top-0 z-50 shadow-lg">
+        <div className="w-full bg-white text-white sticky top-0 z-50 border-b border-gray-200">
             <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="navbar-start">
                     <div className="dropdown">
