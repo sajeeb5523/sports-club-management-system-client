@@ -46,13 +46,13 @@ const Banner = () => {
         setCurrentSlide(index);
     };
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-    };
+    // const nextSlide = () => {
+    //     setCurrentSlide((prev) => (prev + 1) % slides.length);
+    // };
 
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    // const prevSlide = () => {
+    //     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    // };
 
     return (
         <div className="banner-container">
@@ -79,12 +79,12 @@ const Banner = () => {
             </div>
 
             {/* Navigation arrows */}
-            <button className="banner-nav prev" onClick={prevSlide}>
+            <button>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M15 18l-6-6 6-6"/>
                 </svg>
             </button>
-            <button className="banner-nav next" onClick={nextSlide}>
+            <button>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M9 18l6-6-6-6"/>
                 </svg>

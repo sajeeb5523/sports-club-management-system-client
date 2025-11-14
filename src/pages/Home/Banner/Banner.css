@@ -105,7 +105,7 @@
 }
 
 /* navigation arrows */
-.banner-nav {
+/* .banner-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -137,7 +137,7 @@
 
 .banner-nav.next {
     right: 20px;
-}
+} */
 
 /* dots indicator */
 .banner-dots {
@@ -277,7 +277,7 @@
 }
 
 /* loading animation */
-.banner-slide::before {
+/* .banner-slide::before {
     content: '';
     position: absolute;
     top: 0;
@@ -287,7 +287,7 @@
     background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transform: translateX(-100%);
     animation: shimmer 2s infinite;
-}
+} */
 
 @keyframes shimmer {
     0% {
