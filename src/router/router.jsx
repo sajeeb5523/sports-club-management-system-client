@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
+import AuthLayout from "../layouts/AuthLayout";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
@@ -30,6 +31,20 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 export const router = createBrowserRouter([
     {
         path: "/",
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'login',
+                Component: Login,
+            },
+            {
+                path: 'register',
+                Component: Register,
+            },
+        ]
+    },
+    {
+        path: "/",
         Component: RootLayout,
         children: [
             {
@@ -55,14 +70,6 @@ export const router = createBrowserRouter([
             {
                 path: '/contact',
                 Component: Contact,
-            },
-            {
-                path: '/login',
-                Component: Login,
-            },
-            {
-                path: '/register',
-                Component: Register,
             },
             {
                 path: '/forbidden',
